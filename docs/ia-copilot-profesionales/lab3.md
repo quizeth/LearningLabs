@@ -1,4 +1,4 @@
-# Análisis documental avanzado con Copilot Notebooks
+# Laboratorio 3: Análisis documental avanzado con Copilot Notebooks
 
 ## Introducción
 
