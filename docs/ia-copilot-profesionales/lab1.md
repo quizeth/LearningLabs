@@ -32,7 +32,7 @@ Copilot Chat puede ayudarte a identificar rápidamente las principales tendencia
 
 - **Copia y envía** el siguiente prompt:
 ```
-¿Cuáles son las tres principales tendencias de innovación en [tu sector] para 2025 y cómo pueden dar forma a la agenda de una cumbre de clientes?
+¿Cuáles son las tres principales tendencias de innovación en [tu sector] para 2026 y cómo pueden dar forma a la agenda de una cumbre de clientes?
 ```
   > ℹ️ **NOTA:** Sustituye [sector] por el sector que prefieras.
 

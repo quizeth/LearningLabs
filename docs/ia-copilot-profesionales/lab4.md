@@ -53,9 +53,9 @@ Al finalizar el laboratorio, podrás:
 !!! note "Usuarios sin acceso a conocimiento permanente"
     Algunas licencias de Microsoft 365 Copilot no permiten adjuntar documentos al conocimiento permanente del agente.
 
-    En ese caso, no cargues los archivos de conocimiento en el agente. Continúa el laboratorio utilizando `01_Playbook_Juridico_SaaS.docx` y `02_Politica_Financiera_Aprobaciones_SaaS.docx` como archivos de trabajo durante las pruebas.
+    En ese caso, no cargues los archivos de conocimiento en el agente. Crea primero el agente y, después, utiliza `01_Playbook_Juridico_SaaS.docx` y `02_Politica_Financiera_Aprobaciones_SaaS.docx` como archivos de trabajo en las conversaciones de prueba.
 
-    Cuando ejecutes cada caso, adjunta estos dos documentos junto con los archivos del expediente correspondiente.
+    Cuando ejecutes cada caso, adjunta estos dos documentos junto con los archivos del expediente correspondiente. No intentes adjuntarlos durante la configuración del agente: primero debes crearlo.
 
     Esto no cambia el objetivo didáctico del laboratorio. El agente sigue utilizando el mismo playbook jurídico y la misma política financiera. La única diferencia es que el conocimiento se proporciona durante cada conversación en lugar de almacenarse como conocimiento permanente.
 
@@ -88,7 +88,7 @@ El agente no aprobará contratos ni autorizará gasto. Su función será:
 
 El alumno debe aprender a configurar un método de revisión reutilizable, separar las reglas permanentes de los documentos de cada expediente y validar que el agente mantiene sus límites de actuación.
 
-### Tarea 1: Crear el agente
+### Tarea 1: Configurar el agente
 
 #### Objetivo
 
@@ -167,7 +167,7 @@ Proporcionar al agente las reglas jurídicas y financieras reutilizables sin inc
 !!! note "Usuarios sin acceso a conocimiento permanente"
     Algunas licencias de Microsoft 365 Copilot no permiten adjuntar documentos al conocimiento permanente del agente.
 
-    En ese caso, no cargues los archivos de conocimiento en el agente. Conserva `01_Playbook_Juridico_SaaS.docx` y `02_Politica_Financiera_Aprobaciones_SaaS.docx` para adjuntarlos como archivos de trabajo cada vez que ejecutes un caso.
+    En ese caso, no cargues los archivos de conocimiento en el agente. Una vez creado, conserva `01_Playbook_Juridico_SaaS.docx` y `02_Politica_Financiera_Aprobaciones_SaaS.docx` para adjuntarlos como archivos de trabajo en cada conversación de prueba.
 
     Esto no cambia el objetivo didáctico del laboratorio. El agente utilizará el mismo playbook jurídico y la misma política financiera. Únicamente cambia la forma de proporcionar las reglas: durante cada conversación, en lugar de almacenarlas como conocimiento permanente.
 
@@ -184,6 +184,10 @@ Resume los riesgos jurídicos y financieros para una reunión con Compras.
 7. Si utilizas conocimiento permanente, confirma que contiene reglas aplicables a todos los expedientes y no información específica de un contrato concreto.
 
 8. Si no tienes acceso a conocimiento permanente, confirma que conservarás los archivos 01 y 02 para adjuntarlos durante la ejecución de cada caso.
+
+9. Cuando hayas terminado la configuración, selecciona **Crear** para crear el agente.
+
+10. Espera a que se cree y comprueba que aparece en **Agentes**. A partir de este momento podrás abrir una conversación y adjuntar los archivos de cada caso.
 
 #### Comprobación
 
@@ -205,6 +209,8 @@ Comprueba que:
 
 - Las indicaciones sugeridas aparecen en la configuración.
 
+- El agente se ha creado antes de adjuntar documentación a una conversación.
+
 #### Reflexiona
 
 - ¿Qué problema produciría añadir un contrato concreto al conocimiento permanente?
@@ -221,23 +227,25 @@ Comprobar que el agente aplica el método configurado al caso de mayor riesgo, u
 
 #### Pasos
 
-1. Abre la pestaña **Probar** o **Vista previa**.
+1. En **Agentes**, abre **Revisor Legal-Financiero SaaS**, que ya has creado.
 
-2. Adjunta los siguientes archivos como archivos de sesión:
+2. Inicia una conversación nueva con el agente.
+
+3. Adjunta los siguientes archivos como archivos de sesión a esa conversación:
 
     1. `03_Contrato_OrionCloud.docx`
 
     2. `04_Solicitud_Compra_OrionCloud.docx`
 
-3. Si no tienes acceso a conocimiento permanente, adjunta también estos archivos de reglas:
+4. Si no tienes acceso a conocimiento permanente, adjunta también estos archivos de reglas a la conversación:
 
     1. `01_Playbook_Juridico_SaaS.docx`
 
     2. `02_Politica_Financiera_Aprobaciones_SaaS.docx`
 
-4. Verifica que el contrato y la solicitud de compra de OrionCloud se utilizan únicamente para la ejecución del caso y no se incorporan al conocimiento permanente.
+5. Verifica que el contrato y la solicitud de compra de OrionCloud se utilizan únicamente para la ejecución del caso y no se incorporan al conocimiento permanente.
 
-5. Envía el siguiente prompt:
+6. Envía el siguiente prompt:
 
 ```text
 Haz la revisión completa de este caso.
@@ -252,7 +260,7 @@ Incluye:
 Aplica estrictamente tu conocimiento y muestra la fuente de cada conclusión importante.
 ```
 
-6. Revisa la respuesta utilizando la siguiente validación mínima:
+7. Revisa la respuesta utilizando la siguiente validación mínima:
 
 | Comprobación | Resultado esperado |
 |---|---|
@@ -268,7 +276,7 @@ Aplica estrictamente tu conocimiento y muestra la fuente de cada conclusión imp
 | Propiedad intelectual | No existe indemnidad específica |
 | Jurisdicción | Nueva York; requiere escalado |
 
-7. Evalúa el método aplicado. No busques una redacción idéntica.
+8. Evalúa el método aplicado. No busques una redacción idéntica.
 
 #### Comprobación
 
@@ -335,9 +343,9 @@ Debe:
 - Terminar siempre con aprobaciones requeridas, preguntas abiertas y revisión humana necesaria.
 ```
 
-5. Regresa a **Probar** o **Vista previa**.
+5. Guarda o aplica los cambios si Agent Builder te lo solicita.
 
-6. Ejecuta de nuevo el caso OrionCloud con los mismos archivos de sesión.
+6. Regresa a la conversación de OrionCloud y ejecuta de nuevo el caso con los mismos archivos de sesión.
 
 7. Compara la segunda respuesta con la primera.
 
@@ -367,7 +375,7 @@ Comprueba que:
 
 - ¿Qué evidencia permite afirmar que la segunda respuesta es mejor que la primera?
 
-### Tarea 5: Crear y reutilizar el agente con NovaDesk
+### Tarea 5: Reutilizar el agente con NovaDesk
 
 #### Objetivo
 
@@ -375,27 +383,25 @@ Reutilizar el mismo agente y las mismas reglas internas con un expediente difere
 
 #### Pasos
 
-1. Cuando la prueba sea satisfactoria, selecciona **Crear**.
+1. Abre el agente **Revisor Legal-Financiero SaaS**, que ya has creado.
 
-2. Abre el agente **Revisor Legal-Financiero SaaS**.
+2. Inicia una conversación nueva.
 
-3. Inicia una conversación nueva.
-
-4. Adjunta los siguientes archivos como archivos de sesión:
+3. Adjunta los siguientes archivos como archivos de sesión a esa conversación:
 
     1. `05_Contrato_NovaDesk.docx`
 
     2. `06_Solicitud_Compra_NovaDesk.docx`
 
-5. Si no tienes acceso a conocimiento permanente, adjunta también estos archivos de reglas:
+4. Si no tienes acceso a conocimiento permanente, adjunta también estos archivos de reglas a la conversación:
 
     1. `01_Playbook_Juridico_SaaS.docx`
 
     2. `02_Politica_Financiera_Aprobaciones_SaaS.docx`
 
-6. Verifica que los archivos de NovaDesk no se incorporan al conocimiento permanente.
+5. Verifica que los archivos de NovaDesk no se incorporan al conocimiento permanente.
 
-7. Envía el siguiente prompt:
+6. Envía el siguiente prompt:
 
 ```text
 Realiza la misma revisión Legal + Finanzas aplicada al caso anterior.
@@ -403,7 +409,7 @@ Usa exactamente el mismo método y las mismas reglas internas.
 Muestra los cálculos, la clasificación, las fuentes y la revisión humana necesaria.
 ```
 
-8. Revisa la respuesta utilizando la siguiente validación mínima:
+7. Revisa la respuesta utilizando la siguiente validación mínima:
 
 | Tema | Resultado esperado |
 |---|---|
@@ -419,7 +425,7 @@ Muestra los cálculos, la clasificación, las fuentes y la revisión humana nece
 | Propiedad intelectual | Existe indemnidad |
 | Ley aplicable | España/Madrid |
 
-9. Compara el resultado con el caso OrionCloud.
+8. Compara el resultado con el caso OrionCloud.
 
 !!! note "Conclusión didáctica"
     OrionCloud debería producir varios hallazgos ÁMBAR o ROJO. NovaDesk debería resultar mayoritariamente VERDE. La diferencia procede de los expedientes, no del método de revisión.
@@ -507,7 +513,7 @@ Comprueba que:
 | **Ruta con licencia completa** | Utiliza los archivos 01 y 02 como conocimiento permanente |
 | **Ruta sin conocimiento permanente** | Adjunta los archivos 01 y 02 como archivos de trabajo durante cada ejecución |
 | **OrionCloud y NovaDesk** | Son expedientes concretos y nunca deben añadirse al conocimiento permanente |
-| **Vista previa** | Permite probar y refinar el agente antes de utilizarlo |
+| **Conversación con el agente** | Permite probar el agente creado con los archivos de cada expediente |
 | **Revisión humana** | El agente asiste en el análisis, pero no aprueba contratos ni autoriza gasto |
 
 ## Recursos adicionales
