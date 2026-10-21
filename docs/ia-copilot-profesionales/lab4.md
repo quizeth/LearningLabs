@@ -529,6 +529,3 @@ Comprueba que:
 - [05_Contrato_NovaDesk.docx](recursos/files/05_Contrato_NovaDesk.docx)
 
 - [06_Solicitud_Compra_NovaDesk.docx](recursos/files/06_Solicitud_Compra_NovaDesk.docx)
-
-!!! tip "Siguiente paso"
-    En el siguiente laboratorio aplicarás los conceptos de configuración, conocimiento reutilizable, pruebas y revisión humana a un nuevo escenario de trabajo con Microsoft 365 Copilot.
