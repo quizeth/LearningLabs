@@ -14,3 +14,9 @@
 <p>Crea una tabla Delta de prueba, analiza una consulta con su plan y perfil de ejecución, optimiza la organización de los datos y comprueba cómo Unity Catalog aporta contexto y control de acceso.</p>
 <strong><a href="lab1/">Abrir laboratorio</a></strong>
 </div>
+
+<div style="max-width: 36rem; margin-top: 1rem; padding: 1.25rem; border: 1px solid var(--md-default-fg-color--lightest); border-radius: 6px; background: var(--md-code-bg-color);">
+<strong>Script SQL del laboratorio</strong>
+<p>Consulta el script SQL completo utilizado en la práctica.</p>
+<strong><a href="sqlscript.md">Abrir script SQL</a></strong>
+</div>
