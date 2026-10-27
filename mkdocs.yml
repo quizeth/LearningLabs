@@ -51,6 +51,10 @@ nav:
       - Análisis documental avanzado con Copilot Notebooks: ia-copilot-profesionales/lab3.md
       - Crear y probar un agente con Microsoft 365 Copilot: ia-copilot-profesionales/lab4.md
 
+  - Optimización SQL y Unity en Databricks:
+      - Presentación del curso: optimizacion-databricks/index.md
+      - Optimización SQL y gobierno con Unity Catalog: optimizacion-databricks/lab1.md
+
 markdown_extensions:
   - admonition
   - pymdownx.details
