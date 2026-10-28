@@ -55,6 +55,11 @@ nav:
       - Presentación del curso: optimizacion-databricks/index.md
       - Optimización SQL y gobierno con Unity Catalog: optimizacion-databricks/lab1.md
 
+  - Terraform: Despliegues prácticos e infraestructuras complejas:
+      - Presentación del curso: terraform-despliegues-practicos/index.md
+      - Guía del alumno · Sesión 2: terraform-despliegues-practicos/guia-alumno.md
+      - Script Terraform de la práctica: terraform-despliegues-practicos/terraform-script.md
+
 markdown_extensions:
   - admonition
   - pymdownx.details
