@@ -35,16 +35,6 @@ Al finalizar el laboratorio, podrás:
 
 **Duración estimada:** 30 minutos.
 
-| Tarea | Tiempo orientativo |
-|---|---|
-| 1. Instrucciones personalizadas | 3 min |
-| 2. Zero-shot | 4 min |
-| 3. Few-shot | 5 min |
-| 4. Razonamiento verificable | 7 min |
-| 5. Superprompt | 7 min |
-| 6. Prompt propio *(opcional)* | 10 min |
-| 7. Comparación final y cierre | 4 min |
-
 **Material necesario:**
 
 - Microsoft 365 Copilot Chat (licencia básica o premium).
@@ -54,14 +44,14 @@ Al finalizar el laboratorio, podrás:
     - Anexo 3: Ofertas de subcontratación.
 
 !!! note "Licencias"
-    Todas las tareas usan funciones disponibles en Copilot Chat sin licencia premium: chat y carga de archivos. Si tienes licencia premium y Copilot incorpora datos de tu organización, tus respuestas pueden diferir de los resultados esperados. Trabaja siempre con el dossier adjunto.
+    Todas las tareas usan funciones disponibles en Copilot Chat sin licencia premium: chat y carga de archivos. Si tienes licencia premium y Copilot incorpora datos de tu organización (WorkIQ activado), tus respuestas pueden diferir de los resultados esperados. Trabaja siempre con el dossier adjunto.
 
 !!! warning "Abre una conversación nueva cuando se indique"
     Los ejemplos y las instrucciones de una conversación condicionan las respuestas siguientes. Para comparar técnicas de forma justa, cada tarea empieza con un chat nuevo.
 
 ## Caso práctico
 
-Corvalia Consultoría Tecnológica moderniza la plataforma de seguimiento de envíos de Grupo Alcora, una empresa de logística. El proyecto **ALC-2026-014** acaba de cerrar su primera fase y formas parte de la oficina de proyectos.
+Corvalia Consultoría Tecnológica moderniza la plataforma de seguimiento de envíos de Grupo Alcora, una empresa de logística. El proyecto **ALC-2026-014** está en su primera fase y formas parte de la oficina de proyectos.
 
 Antes del próximo comité, tienes que hacer tres cosas:
 
@@ -74,8 +64,6 @@ Para hacerlo, usarás varias técnicas de prompting y compararás el control que
 ---
 
 ### Tarea 1: Instrucciones personalizadas
-
-**Licencia:** no requiere licencia premium.
 
 #### Objetivo
 
@@ -118,8 +106,6 @@ Configurar reglas que Copilot aplique en segundo plano a todas tus conversacione
 
 ### Tarea 2: Zero-shot prompting
 
-**Licencia:** no requiere licencia premium.
-
 #### Objetivo
 
 Plantear una tarea sin ejemplos y detectar qué criterios, supuestos o formato elige Copilot por su cuenta.
@@ -156,8 +142,6 @@ Plantear una tarea sin ejemplos y detectar qué criterios, supuestos o formato e
 ---
 
 ### Tarea 3: Few-shot prompting
-
-**Licencia:** no requiere licencia premium.
 
 #### Objetivo
 
@@ -218,8 +202,6 @@ Usar ejemplos resueltos para fijar categorías, severidades y formato, y comprob
 
 ### Tarea 4: Razonamiento verificable
 
-**Licencia:** no requiere licencia premium.
-
 #### Objetivo
 
 Pedir datos de entrada, fórmula, operación y resultado para poder auditar un cálculo, y separar HECHO, CÁLCULO e INFERENCIA.
@@ -277,8 +259,6 @@ En tareas cuantitativas, una conclusión sin operaciones visibles no se puede co
 ---
 
 ### Tarea 5: Superprompt
-
-**Licencia:** no requiere licencia premium.
 
 #### Objetivo
 
@@ -342,8 +322,6 @@ Construir y evaluar un prompt estructurado que controle el rol, el contexto, la 
 
 ### Tarea 6 *(opcional)*: Crea y mejora tu propio prompt
 
-**Licencia:** no requiere licencia premium.
-
 #### Objetivo
 
 Diseñar un prompt propio con la técnica adecuada, detectar un problema concreto en la respuesta y corregirlo.
@@ -383,8 +361,6 @@ Diseñar un prompt propio con la técnica adecuada, detectar un problema concret
 ---
 
 ### Tarea 7: Comparación final y cierre
-
-**Licencia:** no requiere licencia premium.
 
 #### Objetivo
 
