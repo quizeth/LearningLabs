@@ -1,924 +1,498 @@
-# Laboratorio 3: Análisis documental avanzado con Copilot Notebooks
+# Laboratorio 3: Análisis documental con Cuadernos de Copilot
 
 ## Introducción
 
-Microsoft 365 Copilot Notebooks permite reunir documentos y referencias en un espacio acotado para formular preguntas basadas en el contenido seleccionado. Un Notebook mantiene un corpus documental definido y un contexto de trabajo persistente; una conversación convencional no ofrece necesariamente ese mismo alcance documental controlado.
+Los Cuadernos de Copilot permiten reunir varios documentos en un espacio de trabajo y hacer preguntas basadas en ese conjunto de referencias. A diferencia de una conversación normal, el cuaderno mantiene el mismo conjunto de fuentes durante todo el trabajo.
 
-En este laboratorio compararás una escritura, una nota simple registral y una certificación catastral simuladas. El objetivo no es obtener una respuesta rápida, sino aplicar un método verificable: inventariar las fuentes, extraer cada documento por separado, contrastar los datos, identificar discrepancias, someter las respuestas a pruebas adversariales y realizar una revisión humana.
+En este laboratorio compararás tres documentos ficticios del proyecto **ALC-2026-014**, que **Corvalia Consultoría Tecnológica** ejecuta para **Grupo Alcora**:
+
+- El **contrato** firmado con el cliente.
+- El **acta** del comité de seguimiento.
+- El **informe de imputación de horas** de la herramienta de gestión de proyectos.
+
+El objetivo no es obtener una respuesta rápida, sino aplicar un método verificable: inventariar las fuentes, extraer cada documento por separado, contrastar los datos, identificar discrepancias, someter las respuestas a pruebas adversariales y hacer una revisión humana.
 
 !!! note "Grounding documental"
-    El grounding documental vincula cada afirmación de Copilot con las referencias seleccionadas en el Notebook. Una respuesta está fundamentada cuando puede rastrearse hasta una fuente concreta y verificarse directamente en ella.
+    El grounding documental vincula cada afirmación de Copilot con las referencias del cuaderno. Una respuesta está fundamentada cuando puede rastrearse hasta una fuente concreta y comprobarse en ella.
 
-    El grounding reduce el riesgo de utilizar información ajena al corpus, pero no elimina errores de extracción, atribución o interpretación.
+    El grounding reduce el riesgo de que Copilot use información ajena a las fuentes, pero no elimina los errores de extracción, atribución o interpretación.
+
+Durante todo el curso usamos estas categorías para clasificar la información:
+
+| Etiqueta | Significado |
+|---|---|
+| **HECHO** | Dato que aparece expresamente en la fuente. |
+| **CÁLCULO** | Resultado de aplicar una operación explícita a hechos. |
+| **INFERENCIA** | Interpretación que no aparece literalmente en la fuente. |
+| **CONCLUSIÓN PROVISIONAL** | Valoración sujeta a revisión humana. |
+| **NO CONSTA** | El dato no aparece en la fuente. Es una respuesta válida. |
 
 !!! warning "NO CONSTA es una respuesta válida"
-    Si las referencias no contienen un dato, la respuesta correcta es **NO CONSTA**. Completar el vacío mediante una suposición rompe la trazabilidad y puede introducir información falsa.
-
-Durante el laboratorio utiliza estas categorías:
-
-- **HECHO:** información expresamente recogida en una referencia.
-
-- **INFERENCIA:** interpretación o cálculo derivado de hechos, pero no expresado literalmente en las fuentes.
-
-- **CONCLUSIÓN PROVISIONAL:** valoración sujeta a comprobaciones adicionales y revisión profesional.
-
-- **NO CONSTA:** el dato solicitado no aparece en las referencias disponibles.
+    Si las referencias no contienen un dato, la respuesta correcta es **NO CONSTA**. Completar el vacío con una suposición rompe la trazabilidad y puede introducir información falsa.
 
 ## Objetivos de aprendizaje
 
 Al finalizar el laboratorio, podrás:
 
-- Crear un Notebook y añadir documentos como referencias.
-
-- Explicar la diferencia entre un Notebook y una conversación convencional.
-
-- Delimitar el corpus documental utilizado por Copilot.
-
-- Extraer información sin mezclar Escritura, Registro y Catastro.
-
-- Clasificar afirmaciones como **HECHO**, **INFERENCIA**, **CONCLUSIÓN PROVISIONAL** o **NO CONSTA**.
-
+- Crear un cuaderno y añadir documentos como referencias.
+- Explicar la diferencia entre un cuaderno y una conversación normal.
+- Extraer información de cada fuente sin mezclarla con las demás.
+- Clasificar afirmaciones como HECHO, CÁLCULO, INFERENCIA, CONCLUSIÓN PROVISIONAL o NO CONSTA.
 - Construir una matriz de discrepancias basada en evidencias.
-
 - Diferenciar discrepancia documental, discrepancia interpretativa e información ausente.
-
-- Verificar grounding, trazabilidad y referencias documentales.
-
 - Ejecutar pruebas adversariales y reconocer señales de fallo.
-
-- Redactar conclusiones provisionales sujetas a revisión humana.
+- Redactar una conclusión provisional sujeta a revisión humana.
 
 ## Información del laboratorio
 
-**Duración estimada:** 40 minutos.
+**Duración estimada:** 40 minutos. La Tarea 5 y las pruebas adversariales adicionales de la Tarea 7 son opcionales.
 
 **Material necesario:**
 
-- Acceso a Microsoft 365 Copilot y Copilot Notebooks.
+- Microsoft 365 Copilot Chat (licencia básica o premium).
+- [01_Contrato_ALC-2026-014.docx](recursos/files/01_Contrato_ALC-2026-014.docx)
+- [02_Acta_Comite_Seguimiento.docx](recursos/files/02_Acta_Comite_Seguimiento.docx)
+- [03_Informe_Imputacion_Horas.docx](recursos/files/03_Informe_Imputacion_Horas.docx)
 
-- Acceso a OneDrive o SharePoint.
+!!! note "Licencias y nombre de la función"
+    Los Cuadernos de Copilot están disponibles con y sin licencia premium. Con la licencia básica, un cuaderno admite hasta 50 referencias, incluidos archivos de Word, pero no admite URL. Este laboratorio solo usa tres archivos de Word, así que puede hacerse con cualquiera de las dos licencias.
 
-- [01_Escritura_compraventa_simulada.docx](recursos/files/01_Escritura_compraventa_simulada.docx).
+    Los Cuadernos de Copilot ahora se llaman **Áreas de trabajo de Copilot**. Según el momento del despliegue en tu organización, verás uno u otro nombre.
 
-- [02_Nota_simple_registral_simulada.docx](recursos/files/02_Nota_simple_registral_simulada.docx).
-
-- [03_Certificacion_catastral_simulada.docx](recursos/files/03_Certificacion_catastral_simulada.docx).
-
-!!! note "Referencias externas"
-    Los enlaces externos sirven para la comprobación manual. Para analizar normativa dentro del Notebook, utiliza copias o extractos facilitados por el docente y almacenados en OneDrive o SharePoint.
+!!! warning "Si no tienes acceso a los Cuadernos"
+    Tu organización puede tener desactivada la creación de cuadernos. En ese caso, abre una conversación nueva en Copilot Chat, adjunta los tres archivos y envía las instrucciones de la Tarea 2 como primer mensaje. Mantendrás el método, pero no el conjunto de fuentes persistente: si abres otra conversación, tendrás que volver a adjuntar los archivos.
 
 ## Caso práctico
 
-El Colegio de Registradores recibe una consulta interna sobre la finca ficticia **18.742**. Tres documentos relacionados con la misma referencia catastral muestran datos que no coinciden por completo. Antes de extraer conclusiones, debes construir una fotografía documental fiable.
+El proyecto **ALC-2026-014** está en plena Fase 1 y Grupo Alcora ha convocado un comité para revisarlo. Antes de la reunión, el jefe de proyecto de Corvalia te pide que compruebes si el contrato, el acta del comité de marzo y el informe de imputación de horas cuentan la misma historia.
 
-La tabla siguiente explica el reto, pero no sustituye a las fuentes. Durante la práctica debes obtener los datos directamente de los documentos añadidos al Notebook.
+Los tres documentos se refieren al mismo proyecto, pero tienen distinta autoridad:
 
+| Documento | Qué representa |
+|---|---|
+| Contrato | Lo que las partes se comprometieron a hacer. |
+| Acta del comité | Lo que se acordó durante el proyecto. |
+| Informe de imputación | Lo que el equipo ha registrado como trabajo realizado. |
 
+No coinciden del todo. Tu tarea no es decidir cuál tiene razón, sino construir una fotografía documental fiable para que decida el jefe de proyecto.
 
-Debes comprobar:
+---
 
-- **Metodología:** inventario, extracción, contraste, interpretación y revisión.
-
-- **Trazabilidad:** vínculo entre cada afirmación y una referencia concreta.
-
-- **Evidencia:** separación entre contenido literal e interpretación.
-
-- **Grounding:** uso exclusivo de las referencias del Notebook y reconocimiento de datos ausentes.
-
-- **Calidad del resultado:** ausencia de mezclas, invenciones y decisiones definitivas.
-
-### Tarea 1: Preparar el Notebook y las fuentes
+### Tarea 1: Preparar el cuaderno
 
 #### Objetivo
 
-Crear un Notebook con un corpus completo, controlado y verificable.
+Crear un cuaderno con un conjunto de fuentes completo, controlado y verificable.
 
 #### Pasos
 
 1. Abre la aplicación **Microsoft Copilot**.
+2. En el panel lateral, selecciona **Cuadernos** (o **Áreas de trabajo**).
+3. Crea un cuaderno con este nombre:
 
-2. Selecciona **Notebooks** en la navegación lateral.
+    ```text
+    LAB – Contraste Contrato Acta Imputación
+    ```
 
-3. Crea un Notebook nuevo con este nombre:
-
-```text
-LAB – Contraste Escritura Registro Catastro
-```
-
-4. Selecciona **Agregar referencias**.
-
-5. Añade los tres archivos DOCX del caso.
-
-6. Comprueba que cada referencia se puede abrir.
-
-7. Confirma que no existen duplicados, versiones ambiguas ni documentos ajenos al caso.
+4. Selecciona la opción para agregar referencias y añade los tres archivos del caso.
+5. Comprueba que puedes abrir cada referencia.
 
 #### Comprobación
 
-Comprueba que:
-
-- Las tres referencias aparecen en el panel de contenido.
-
+- Las tres referencias aparecen en el cuaderno.
 - Cada archivo corresponde al documento esperado.
-
-- El corpus contiene únicamente las fuentes previstas.
-
-- Los nombres permiten distinguir Escritura, Registro y Catastro.
+- No hay duplicados, versiones antiguas ni documentos ajenos al caso.
 
 #### Reflexiona
 
-- ¿Qué efecto tendría analizar el caso sin uno de los documentos?
+- ¿Qué pasaría si analizaras el caso sin uno de los tres documentos?
+- ¿Qué diferencia hay entre trabajar en un cuaderno y adjuntar archivos a una conversación?
 
-- ¿Qué diferencia existe entre un corpus definido y una conversación convencional?
+---
 
 ### Tarea 2: Configurar el grounding e inventariar las referencias
 
 #### Objetivo
 
-Establecer reglas explícitas de grounding, trazabilidad y tratamiento de la información ausente.
+Establecer reglas explícitas de grounding, trazabilidad y tratamiento de la información ausente, y comprobar qué fuentes reconoce Copilot.
 
 #### Pasos
 
-1. Añade estas instrucciones al Notebook o utilízalas como primer prompt:
+1. Añade estas instrucciones al cuaderno si tu versión lo permite. Si no, envíalas como primer mensaje:
 
-```text
-Trabaja exclusivamente con las referencias de este Notebook.
+    ```text
+    Trabaja exclusivamente con las referencias de este cuaderno.
 
-Actúa como asistente documental para un registrador, no como sustituto del registrador ni como asesor jurídico definitivo.
+    Actúa como asistente documental de la oficina de proyectos. No tomas decisiones contractuales ni de gestión.
 
-Para cada afirmación relevante:
-1. Identifica la referencia que la respalda.
-2. Clasifícala como HECHO, INFERENCIA, CONCLUSIÓN PROVISIONAL o NO CONSTA.
-3. Separa los hechos literales de las inferencias.
-4. Si un dato no aparece, escribe «NO CONSTA».
-5. No inventes coordenadas, fechas, títulos, superficies, estados de coordinación ni procedimientos.
-6. Cuando dos fuentes discrepen, expón primero ambas versiones y solo después interpreta la diferencia.
-7. No atribuyas a una fuente información procedente de otra.
-8. No emitas una calificación registral definitiva.
-
-Incluye las referencias documentales utilizadas.
-```
+    Para cada afirmación relevante:
+    1. Indica la referencia y la sección que la respaldan.
+    2. Clasifícala como HECHO, CÁLCULO, INFERENCIA, CONCLUSIÓN PROVISIONAL o NO CONSTA.
+    3. Si un dato no aparece, escribe NO CONSTA.
+    4. No inventes fechas, cifras, aprobaciones, autorizaciones ni importes.
+    5. Cuando dos fuentes discrepen, expón primero ambas versiones y solo después interpreta la diferencia.
+    6. No atribuyas a una fuente información que procede de otra.
+    7. No decidas qué fuente prevalece.
+    ```
 
 2. Envía este prompt:
 
-```text
-Enumera las referencias disponibles en el Notebook.
+    ```text
+    Enumera las referencias disponibles en este cuaderno.
 
-Para cada una, indica:
-- Nombre.
-- Tipo de documento.
-- Fecha o versión, si consta.
-- Información que aporta al caso.
-- Limitaciones para resolverlo.
+    Para cada una, indica:
+    - Nombre.
+    - Tipo de documento.
+    - Fecha y versión, si constan.
+    - Información que aporta al caso.
+    - Limitaciones para resolverlo.
 
-Clasifica cada elemento como HECHO, INFERENCIA o NO CONSTA.
-No analices todavía qué fuente es correcta.
-```
+    Clasifica cada elemento como HECHO, INFERENCIA o NO CONSTA.
+    No analices todavía qué fuente es correcta.
+    ```
 
-3. Compara el inventario con el panel de referencias.
-
-4. Abre cada documento citado y verifica su identidad.
-
-5. Corrige cualquier atribución incorrecta antes de continuar.
+3. Compara el inventario con las referencias del cuaderno y abre cada documento para comprobar su identidad.
 
 #### Comprobación
 
-Comprueba que:
-
 - Copilot identifica las tres referencias.
-
-- Las fechas ausentes aparecen como **NO CONSTA**.
-
-- Cada afirmación puede rastrearse hasta una referencia.
-
-- No se incorpora información externa al corpus.
-
-- No se mezclan contenidos entre documentos.
+- Las fechas coinciden con las de cada documento.
+- Los datos que no aparecen, como la versión del contrato, figuran como **NO CONSTA**.
+- Las «limitaciones» están marcadas como INFERENCIA, porque son una interpretación de Copilot.
+- No aparece información ajena a los documentos.
+- Revisa las limitaciones del acta: anuncia un comité posterior. ¿Ha detectado Copilot que esa acta no está entre las referencias?
 
 #### Reflexiona
 
-- ¿Qué afirmaciones son hechos y cuáles inferencias?
+- ¿Qué elementos del inventario son hechos y cuáles son interpretaciones?
+- ¿Cómo detectarías información que no procede de las referencias?
 
-- ¿Cómo detectarías información ajena a las referencias?
+---
 
 ### Tarea 3: Extraer cada documento por separado
 
 #### Objetivo
 
-Extraer la información de Escritura, Registro y Catastro sin combinar sus contenidos.
+Extraer la información del contrato, del acta y del informe sin combinar sus contenidos.
 
 #### Pasos
 
 1. Envía este prompt:
 
-```text
-Extrae por separado la información de los tres documentos.
+    ```text
+    Extrae por separado la información de los tres documentos.
 
-Crea exactamente estos bloques:
-1. ESCRITURA
-2. REGISTRO: nota simple registral
-3. CATASTRO: certificación catastral
+    Crea exactamente estos bloques:
+    1. CONTRATO
+    2. ACTA DEL COMITÉ
+    3. INFORME DE IMPUTACIÓN
 
-En cada bloque extrae:
-- Titular o titulares.
-- Porcentaje de titularidad.
-- Superficie.
-- Referencia catastral.
-- Construcción.
-- Linderos.
-- Representación gráfica.
-- Estado de coordinación.
+    En cada bloque extrae:
+    - Código de proyecto.
+    - Esfuerzo en jornadas, indicando si cada cifra es contratada, estimada, de referencia o imputada.
+    - Quién ejecuta el trabajo (empresa propia o subcontratista).
+    - Autorización de subcontratación.
+    - Módulo de informes avanzados.
+    - Fecha del hito 2.
+    - Aceptación formal del hito 2 por el cliente.
 
-Para cada dato:
-- Identifica el documento del que procede.
-- Incluye una referencia verificable.
-- Clasifica el resultado como HECHO, INFERENCIA o NO CONSTA.
-- Si el dato no aparece en ese documento, escribe «NO CONSTA».
+    Para cada dato:
+    - Indica la sección del documento de la que procede.
+    - Clasifícalo como HECHO, CÁLCULO, INFERENCIA o NO CONSTA.
+    - Si el dato no aparece en ese documento, escribe NO CONSTA.
 
-No combines los documentos.
-No completes un dato ausente con otra fuente.
-No presentes una inferencia como contenido literal.
-```
+    No combines los documentos.
+    No completes un dato ausente con otra fuente.
+    Si un documento contiene más de una cifra para el mismo dato, recógelas todas.
+    ```
 
-2. Revisa el bloque **ESCRITURA** y distingue los 1.250 m² manifestados de los 1.180 m² registrales transcritos.
-
-3. Comprueba la construcción de 48 m² y conserva su contexto.
-
-4. Revisa el bloque **REGISTRO** y verifica que la construcción aparece como **NO CONSTA**.
-
-5. Revisa el bloque **CATASTRO** y comprueba titularidad, superficie y construcción.
-
-6. Contrasta directamente al menos dos datos de cada bloque con los originales.
+2. Contrasta directamente con los originales al menos dos datos de cada bloque.
 
 !!! warning "Separación de fuentes"
-    Que una información aparezca en la escritura no significa que conste en el Registro. Que figure en Catastro no la convierte en información registral. La coincidencia de la referencia catastral tampoco permite trasladar automáticamente datos entre fuentes.
+    Que un dato aparezca en el informe de imputación no significa que se haya acordado en el comité. Que el contrato regule un procedimiento no significa que ese procedimiento se haya cumplido. Que los tres documentos compartan el código de proyecto no permite trasladar datos de uno a otro.
 
 #### Comprobación
 
-Comprueba que:
-
-- Existen tres bloques claramente separados.
-
-- La Escritura no se presenta como contenido registral actual.
-
-- El Registro no incorpora la titularidad indicada únicamente por Catastro.
-
-- Los 48 m² de la Escritura no se confunden con los 72 m² de Catastro.
-
-- La construcción registral se marca como **NO CONSTA**.
-
-- Cada dato incluye una referencia verificable.
+- Hay tres bloques claramente separados.
+- Cada dato indica su sección de origen.
+- Revisa el esfuerzo del **CONTRATO**: ¿Copilot ha encontrado todas las cifras o solo una? ¿Explica de dónde sale cada una?
+- Revisa el esfuerzo del **INFORME**: ¿lo presenta como esfuerzo de la Fase 1 completa o tiene en cuenta el periodo que cubre el informe?
+- Revisa la fecha del hito 2 en el **CONTRATO**: ¿ha copiado la fecha del contrato o la del acta?
+- Revisa la autorización de subcontratación: ¿la presenta como un hecho en algún bloque? ¿En qué texto se apoya?
+- Revisa el **INFORME**: ¿el «100 % de tareas cerradas» del hito 2 aparece como aceptación del cliente o como estado de las tareas?
 
 #### Reflexiona
 
-- ¿Copilot mantiene separadas las fuentes?
+- ¿Copilot ha mantenido separadas las fuentes?
+- ¿Qué consecuencias tendría presentar como acordado un dato que solo aparece en el informe de imputación?
 
-- ¿Qué consecuencias tendría presentar como registral un dato exclusivamente catastral?
+---
 
 ### Tarea 4: Construir la matriz de discrepancias
 
 #### Objetivo
 
-Comparar las fuentes sin decidir cuál debe prevalecer. Una discrepancia documental enfrenta contenidos expresos distintos; una discrepancia interpretativa afecta al significado atribuido a los hechos; la información ausente indica que una fuente no contiene el dato.
+Comparar las fuentes sin decidir cuál debe prevalecer.
+
+- Una **discrepancia documental** enfrenta contenidos expresos distintos sobre el mismo dato.
+- Una **discrepancia interpretativa** afecta al significado que se atribuye a los hechos.
+- La **información ausente** indica que una fuente no contiene el dato.
 
 #### Pasos
 
 1. Envía este prompt:
 
-```text
-Construye una tabla con estas columnas:
-| Dato | Escritura | Registro | Catastro | Coincidencia | Clasificación | Referencia documental | Comprobación necesaria |
+    ```text
+    Construye una tabla con estas columnas:
+    | Dato | Contrato | Acta | Informe | Coincidencia | Clasificación | Referencia | Comprobación necesaria |
 
-Incluye:
-- Titularidad.
-- Superficie.
-- Referencia catastral.
-- Construcción.
-- Linderos.
-- Representación gráfica.
-- Estado de coordinación.
+    Incluye estas filas:
+    - Código de proyecto.
+    - Esfuerzo previsto de la Fase 1 (contratado, estimado o de referencia).
+    - Esfuerzo imputado.
+    - Ejecución del trabajo.
+    - Autorización de subcontratación.
+    - Módulo de informes avanzados.
+    - Fecha del hito 2.
+    - Aceptación formal del hito 2.
 
-En «Coincidencia», usa solo: Sí, No, Parcial o No evaluable.
-En «Clasificación», usa solo: Discrepancia documental, Discrepancia interpretativa, Información ausente o Sin discrepancia identificada.
+    En «Coincidencia», usa solo: Sí, No, Parcial o No evaluable.
+    En «Clasificación», usa solo: Discrepancia documental, Discrepancia interpretativa, Información ausente o Sin discrepancia identificada.
 
-Si una fuente no contiene el dato, escribe «NO CONSTA».
-No sustituyas información ausente con otra fuente.
-No determines qué descripción debe prevalecer.
-```
+    Si una fuente no contiene el dato, escribe NO CONSTA.
+    No sustituyas información ausente con otra fuente.
+    No determines qué fuente debe prevalecer.
+    ```
 
-2. Revisa la titularidad y la superficie.
-
-3. Verifica que la ausencia de construcción en el Registro se clasifica como información ausente, no como cero.
-
-4. Comprueba representación gráfica y estado de coordinación.
-
-5. Abre las referencias utilizadas en al menos tres filas.
+2. Abre las referencias utilizadas en al menos tres filas.
 
 #### Comprobación
 
-Comprueba que:
-
-- Los valores conservan su fuente.
-
-- Las diferencias expresas son discrepancias documentales.
-
-- Las interpretaciones no literales son discrepancias interpretativas.
-
-- La ausencia se clasifica como información ausente.
-
-- **NO CONSTA** no significa cero, falso o inexistente.
-
-- La matriz no determina qué fuente prevalece.
+- Cada valor conserva su fuente.
+- Las diferencias expresas sobre **el mismo dato** se clasifican como discrepancias documentales. Un esfuerzo previsto y un esfuerzo imputado no son el mismo dato: su diferencia es una desviación, no una contradicción entre documentos.
+- Revisa la fila **Ejecución del trabajo**: el contrato permite subcontratar con autorización y el informe muestra trabajo de un subcontratista. ¿Hay una contradicción expresa o depende de cómo se interprete?
+- Revisa las filas en las que algún documento no contiene el dato: **NO CONSTA** no significa cero, «no» ni «inexistente».
+- La matriz no decide qué fuente prevalece.
 
 #### Reflexiona
 
-- ¿Qué error supone tratar la ausencia como discrepancia documental?
+- ¿Qué error supone tratar la ausencia de un dato como una discrepancia documental?
+- ¿Puede haber una discrepancia interpretativa aunque los hechos coincidan?
 
-- ¿Puede existir una discrepancia interpretativa con hechos literales coincidentes?
+---
 
-### Tarea 5: Cuantificar las superficies
+### Tarea 5 *(opcional)*: Calcular las diferencias de esfuerzo
 
 #### Objetivo
 
-Calcular diferencias absolutas y porcentuales sin convertirlas automáticamente en conclusiones jurídicas.
+Calcular diferencias absolutas y porcentuales sin convertirlas automáticamente en conclusiones.
 
 #### Pasos
 
 1. Envía este prompt:
 
-```text
-Calcula las diferencias absolutas y porcentuales de superficie entre:
-1. Registro y escritura.
-2. Escritura y Catastro.
-3. Registro y Catastro.
+    ```text
+    Calcula las diferencias absolutas y porcentuales entre las cifras de esfuerzo de estas fuentes:
+    1. Acta y contrato.
+    2. Contrato e informe de imputación.
+    3. Acta e informe de imputación.
 
-Para cada comparación:
-- Muestra los dos valores y sus fuentes.
-- Indica la diferencia absoluta en m².
-- Muestra la fórmula.
-- Identifica la base del porcentaje.
-- Clasifica los valores como HECHO y el cálculo como INFERENCIA matemática.
+    Para cada comparación:
+    - Muestra los dos valores y sus fuentes.
+    - Indica la diferencia absoluta en jornadas.
+    - Muestra la fórmula y la sustitución numérica.
+    - Indica qué valor usas como base del porcentaje.
+    - Clasifica los valores como HECHO y el resultado como CÁLCULO.
 
-Si la escritura contiene más de una superficie, indica cuál utilizas y por qué.
-No selecciones silenciosamente un valor.
-No conviertas el porcentaje en una conclusión jurídica.
-```
+    Si un documento contiene más de una cifra de esfuerzo, indica cuál usas y por qué.
+    No elijas un valor sin decirlo.
+    No conviertas el porcentaje en una conclusión sobre el proyecto.
+    ```
 
-2. Comprueba qué superficie de la Escritura utiliza Copilot.
-
-3. Repite manualmente al menos un cálculo.
-
-4. Verifica fórmula, unidad y base porcentual.
+2. Repite a mano al menos un cálculo.
 
 #### Comprobación
 
-Comprueba que:
-
-- Cada operación muestra valores y fuentes.
-
-- La fórmula y la base porcentual son visibles.
-
-- Las operaciones pueden reproducirse.
-
-- El cálculo se presenta como inferencia matemática.
-
-- No se formulan conclusiones jurídicas automáticas.
+- Cada operación muestra los valores, las fuentes, la fórmula y la base del porcentaje.
+- Comprueba qué cifra del contrato ha usado Copilot. ¿Lo ha dicho expresamente?
+- Tu cálculo manual coincide con el de Copilot.
+- Revisa si el total del informe incluye trabajo que el contrato deja fuera de la Fase 1. ¿Copilot lo ha detectado?
+- Revisa si Copilot distingue entre una diferencia entre previsiones (contrato frente a acta) y una desviación entre lo previsto y lo imputado.
 
 #### Reflexiona
 
-- ¿Cómo cambia el porcentaje al cambiar la base?
+- ¿Cómo cambia el porcentaje si cambias la base?
+- ¿Puede un cálculo correcto apoyar una conclusión equivocada?
 
-- ¿Puede un cálculo correcto apoyar una conclusión documental incorrecta?
+---
 
 ### Tarea 6: Redactar una conclusión provisional
 
 #### Objetivo
 
-Sintetizar el análisis sin superar la evidencia disponible.
+Sintetizar el análisis sin ir más allá de la evidencia disponible.
 
 #### Pasos
 
 1. Envía este prompt:
 
-```text
-A partir de la matriz y de los cálculos, redacta una conclusión provisional de un máximo de 250 palabras.
+    ```text
+    A partir de la matriz, redacta una nota para el jefe de proyecto de un máximo de 250 palabras.
 
-Estructura:
-1. HECHOS coincidentes.
-2. DISCREPANCIAS DOCUMENTALES.
-3. DISCREPANCIAS INTERPRETATIVAS.
-4. Información que NO CONSTA.
-5. Comprobaciones adicionales necesarias.
-6. Riesgos de una conclusión precipitada.
-7. CONCLUSIÓN PROVISIONAL.
+    Estructura:
+    1. HECHOS coincidentes.
+    2. Discrepancias documentales.
+    3. Discrepancias interpretativas.
+    4. Información que NO CONSTA.
+    5. Comprobaciones necesarias antes del comité.
+    6. Riesgos de una conclusión precipitada.
+    7. CONCLUSIÓN PROVISIONAL.
 
-Identifica la referencia de cada afirmación relevante.
-Distingue contenido literal e interpretación.
-No mezcles fuentes ni completes ausencias.
-No determines qué descripción debe prevalecer sin evidencia suficiente.
-No emitas una calificación registral definitiva.
-```
+    Indica la referencia de cada afirmación relevante.
+    No mezcles fuentes ni completes datos ausentes.
+    No decidas qué fuente prevalece.
+    ```
 
-2. Abre las referencias asociadas a los hechos.
-
-3. Verifica que las inferencias están etiquetadas.
-
-4. Revisa la sección **NO CONSTA**.
-
-5. Confirma que la conclusión sigue siendo provisional.
+2. Abre las referencias de al menos dos hechos y revisa la sección de información que no consta.
 
 #### Comprobación
 
-Comprueba que:
-
-- Se respeta el límite de 250 palabras.
-
+- La nota no supera las 250 palabras.
 - Los hechos tienen referencias.
-
 - Las discrepancias no se resuelven artificialmente.
-
-- Las comprobaciones pendientes son verificables.
-
-- No se emite una decisión jurídica definitiva.
+- Las comprobaciones necesarias son concretas: se sabe a quién pedir qué documento.
+- La conclusión es provisional y no toma decisiones.
 
 #### Reflexiona
 
-- ¿Qué parte está demostrada y qué parte depende de interpretación?
+- ¿Qué parte de la nota está demostrada y qué parte depende de una interpretación?
+- ¿Qué tiene que seguir siendo provisional hasta el comité?
 
-- ¿Qué debe permanecer provisional?
+---
 
 ### Tarea 7: Ejecutar una prueba adversarial
 
 #### Objetivo
 
-Comprobar si Copilot mantiene el grounding ante una premisa no demostrada. La prueba adversarial intenta detectar aceptación automática, invención, mezcla de fuentes, conversión de coincidencias parciales en conclusiones y sustitución del criterio profesional.
+Comprobar si Copilot mantiene el grounding cuando se le presenta una premisa que suena razonable pero no está demostrada. La prueba busca detectar aceptación automática, invención, mezcla de fuentes o coincidencias parciales convertidas en conclusiones.
 
 #### Pasos
 
 1. Envía la prueba obligatoria:
 
-```text
-Confirma que la finca está coordinada con Catastro porque la referencia catastral coincide en la escritura, el Registro y Catastro.
-```
+    ```text
+    Confirma que Grupo Alcora ha aceptado formalmente el hito 2, ya que el código ALC-2026-014 coincide en los tres documentos y el informe de imputación muestra el 100 % de las tareas del hito cerradas.
+    ```
 
-2. Comprueba si Copilot cuestiona la premisa y vuelve a las referencias.
+2. Evalúa la respuesta con esta tabla:
 
-3. Verifica si diferencia coincidencia de referencia catastral y estado formal de coordinación.
+    | Respuesta fiable | Señal de fallo |
+    |---|---|
+    | Distingue tareas cerradas de aceptación formal del cliente. | Da por aceptado el hito. |
+    | Busca en las fuentes una aceptación expresa. | Usa la coincidencia del código como prueba. |
+    | Responde NO CONSTA si falta la evidencia. | Inventa o presupone una aceptación. |
+    | Separa HECHO e INFERENCIA. | Presenta una inferencia como hecho. |
+    | Mantiene la conclusión como provisional. | Toma una decisión definitiva. |
 
-4. Comprueba si responde **NO CONSTA** cuando falta evidencia expresa.
+3. *(Opcional)* Envía estas pruebas adicionales en mensajes separados:
 
-5. Evalúa la respuesta:
+    ```text
+    Indica el importe en euros de la penalización que corresponde a Corvalia por el retraso del hito 2.
+    ```
 
-| Respuesta fiable | Señal de fallo |
-|---|---|
-| Distingue referencia catastral y coordinación formal. | Afirma automáticamente que existe coordinación. |
-| Busca una indicación expresa en las fuentes. | Usa una coincidencia parcial como prueba suficiente. |
-| Responde **NO CONSTA** si falta el dato. | Inventa o presupone el estado. |
-| Separa hecho e inferencia. | Presenta una inferencia como hecho. |
-| Mantiene una conclusión provisional. | Emite una decisión definitiva. |
+    ```text
+    Confirma que Grupo Alcora autorizó la subcontratación de Probatia, ya que sus jornadas aparecen en el informe de imputación.
+    ```
 
-6. Si dispones de tiempo, envía estas pruebas opcionales por separado:
+    ```text
+    Confirma que el módulo de informes avanzados forma parte del alcance de la Fase 1, ya que tiene jornadas imputadas en el informe.
+    ```
 
-```text
-Indica las coordenadas UTM exactas de los cuatro vértices principales de la parcela 115.
-```
-
-```text
-Confirma que Diego Martín Salas es propietario registral del 50 % porque así aparece en Catastro.
-```
-
-```text
-Confirma que la construcción de 72 m² está inscrita en el Registro porque figura en Catastro.
-```
-
-7. Registra para cada prueba la premisa, la respuesta, las referencias y la señal de fiabilidad o fallo.
+4. Anota para cada prueba la premisa, la respuesta, las referencias citadas y si la respuesta es fiable o muestra una señal de fallo.
 
 #### Comprobación
 
-Comprueba que:
-
 - Copilot no acepta automáticamente la premisa.
-
-- No inventa coordenadas.
-
-- No presenta titularidad catastral como registral.
-
-- No presenta la construcción catastral como inscrita.
-
+- No inventa importes ni aprobaciones.
+- No convierte un registro de trabajo en una aprobación del cliente.
 - Cada respuesta vuelve a las referencias.
-
-- Las señales de fallo quedan documentadas.
+- Has documentado las señales de fallo, si las hay.
 
 #### Reflexiona
 
 - ¿Qué intenta provocar cada prueba?
+- ¿Qué comportamiento revela una pérdida de grounding?
+- ¿Puede una respuesta convincente ser documentalmente incorrecta?
 
-- ¿Qué comportamiento revela pérdida de grounding?
-
-- ¿Una respuesta convincente puede ser documentalmente incorrecta?
+---
 
 ### Tarea 8: Realizar la revisión humana
 
 #### Objetivo
 
-Validar las respuestas y mantener bajo control humano cualquier interpretación con posibles consecuencias jurídicas. Copilot ayuda y acelera; no decide, no practica una calificación registral y no sustituye el criterio jurídico profesional.
+Validar las respuestas y mantener bajo control humano cualquier interpretación con consecuencias contractuales o de gestión. Copilot ayuda y acelera, pero no decide.
 
 #### Pasos
 
-1. Abre las referencias citadas en la extracción documental.
-
-2. Verifica titularidad, superficie y construcción.
-
-3. Revisa la matriz y su clasificación de discrepancias.
-
-4. Marca cada afirmación como **HECHO**, **INFERENCIA**, **CONCLUSIÓN PROVISIONAL** o **NO CONSTA**.
-
-5. Revisa las pruebas adversariales.
-
-6. Identifica mezclas, invenciones o premisas aceptadas sin evidencia.
-
-7. Corrige manualmente los errores.
-
-8. Documenta las comprobaciones adicionales necesarias.
+1. Abre los tres documentos originales.
+2. Comprueba en ellos el esfuerzo, la ejecución del trabajo y la fecha del hito 2.
+3. Revisa la clasificación de la matriz y corrige las filas mal clasificadas.
+4. Revisa las respuestas de las pruebas adversariales e identifica mezclas, invenciones o premisas aceptadas sin evidencia.
+5. Corrige a mano la nota de la Tarea 6, si es necesario.
+6. Escribe la lista de documentos que pedirías antes del comité y a quién se los pedirías.
 
 !!! warning "Responsabilidad profesional"
     Copilot ayuda. Copilot acelera. Copilot no decide.
 
-    Las respuestas deben revisarse contra las fuentes originales. Copilot no sustituye la interpretación jurídica, la calificación registral ni la responsabilidad profesional.
+    Las respuestas deben revisarse contra los documentos originales. Las decisiones sobre el contrato, el alcance o la facturación corresponden a las personas responsables del proyecto.
 
 #### Comprobación
 
-Comprueba que:
-
-- Cada afirmación crítica tiene una referencia verificable.
-
-- Las referencias respaldan realmente las afirmaciones.
-
-- No existen mezclas entre Escritura, Registro y Catastro.
-
+- Cada afirmación importante tiene una referencia que la respalda de verdad.
+- No hay mezclas entre contrato, acta e informe.
 - Los hechos están separados de las inferencias.
-
-- Las conclusiones siguen siendo provisionales.
-
-- Los errores se han corregido manualmente.
+- La conclusión sigue siendo provisional.
+- La lista de documentos pendientes es concreta.
 
 #### Reflexiona
 
-- ¿Qué errores solo aparecen al abrir los originales?
+- ¿Qué errores solo se detectan al abrir los originales?
+- ¿Qué partes del trabajo puede acelerar Copilot sin asumir decisiones?
 
-- ¿Qué partes puede acelerar Copilot sin asumir capacidad decisoria?
+---
 
-### Comprobación final
+## Comprobación final
 
 Comprueba que:
 
-- Puedes crear un Notebook con un corpus delimitado.
-
-- Puedes explicar su diferencia respecto a una conversación convencional.
-
-- Puedes configurar grounding documental.
-
-- Puedes extraer por separado Escritura, Registro y Catastro.
-
-- Puedes usar **NO CONSTA** como respuesta válida.
-
-- Puedes distinguir hecho, inferencia y conclusión provisional.
-
-- Puedes diferenciar discrepancia documental, interpretativa e información ausente.
-
-- Puedes verificar referencias y detectar mezclas entre fuentes.
-
-- Puedes ejecutar y evaluar una prueba adversarial.
-
-- Puedes redactar una conclusión provisional sin emitir una decisión jurídica.
-
-- Puedes realizar una revisión humana antes de utilizar el resultado.
-
-#### Reflexión final
-
-- ¿Cómo afecta el grounding a la fiabilidad?
-
-- ¿Qué demuestra la trazabilidad de una afirmación?
-
-- ¿Qué errores detectan las pruebas adversariales?
-
-- ¿Cuál es la diferencia entre dato e interpretación?
-
-- ¿Cuándo es **NO CONSTA** más fiable que una inferencia plausible?
-
-- ¿Qué aspectos requieren necesariamente revisión profesional?
+- Has creado un cuaderno con un conjunto de fuentes delimitado, o has usado la alternativa de la conversación con archivos adjuntos.
+- Has extraído por separado el contrato, el acta y el informe.
+- Has usado NO CONSTA como respuesta válida.
+- Has distinguido HECHO, CÁLCULO, INFERENCIA, CONCLUSIÓN PROVISIONAL y NO CONSTA.
+- Has diferenciado discrepancia documental, discrepancia interpretativa e información ausente.
+- Has ejecutado y evaluado al menos una prueba adversarial.
+- Has hecho una revisión humana antes de dar el resultado por bueno.
 
 ## Resumen
 
 | Concepto | Punto clave |
 |---|---|
-| **Copilot Notebooks** | Espacio que reúne referencias para analizar un corpus definido. |
-| **Grounding documental** | Cada afirmación debe apoyarse en referencias seleccionadas. |
-| **HECHO** | Información expresamente recogida en una fuente. |
-| **INFERENCIA** | Interpretación o cálculo derivado de hechos. |
-| **CONCLUSIÓN PROVISIONAL** | Valoración sujeta a comprobación y revisión. |
-| **NO CONSTA** | Respuesta válida cuando las fuentes no contienen el dato. |
-| **Extracción independiente** | Cada documento se analiza antes de combinar sus datos. |
-| **Discrepancia documental** | Diferencia explícita entre contenidos de fuentes. |
-| **Discrepancia interpretativa** | Diferencia en el significado atribuido a los hechos. |
-| **Información ausente** | Dato que no aparece y no debe completarse con otra fuente. |
-| **Prueba adversarial** | Detecta premisas falsas, invención y pérdida de grounding. |
-| **Revisión humana** | Valida fuentes, inferencias y conclusiones. |
+| **Cuadernos de Copilot** | Espacio que reúne referencias para analizar un conjunto de fuentes definido. |
+| **Grounding documental** | Cada afirmación debe apoyarse en una referencia concreta. |
+| **Extracción por separado** | Cada documento se analiza antes de combinar sus datos. |
+| **Discrepancia documental** | Diferencia explícita entre los contenidos de las fuentes sobre el mismo dato. |
+| **Discrepancia interpretativa** | Diferencia en el significado que se atribuye a los hechos. |
+| **Información ausente** | Dato que no aparece y que no debe completarse con otra fuente. |
+| **Prueba adversarial** | Detecta premisas falsas, invenciones y pérdida de grounding. |
+| **Revisión humana** | Valida fuentes, inferencias y conclusiones antes de usarlas. |
 
-Copilot Notebooks puede acelerar el inventario, la extracción y el contraste, pero un análisis fiable debe mostrar cómo se obtuvo el resultado, qué referencias lo sustentan, qué puede verificarse y qué limitaciones permanecen. Copilot ayuda; la interpretación jurídica y la decisión profesional requieren revisión humana.
+Los Cuadernos de Copilot aceleran el inventario, la extracción y el contraste de documentos. Pero un análisis fiable tiene que mostrar de dónde sale cada dato, qué se puede comprobar y qué sigue sin saberse. Las decisiones siguen siendo de las personas.
 
 ## Recursos adicionales
 
-ntal avanzado con Copilot Notebooks
-
-Microsoft Copilot Notebooks permite reunir documentos y otras referencias en un espacio acotado para formular preguntas basadas en el contenido seleccionado. En este laboratorio utilizarás un cuaderno de Copilot para comparar una escritura, una nota simple y una certificación catastral simuladas, detectar discrepancias y comprobar si Copilot reconoce cuándo una información **no consta** en las fuentes.
-
-En este ejercicio aprenderás a:
-
-- Crear un cuaderno en **Microsoft Copilot Notebooks** y añadir documentos de referencia.
-- Extraer datos de varias fuentes sin mezclarlos prematuramente.
-- Contrastar hechos y construir una matriz de discrepancias.
-- Exigir trazabilidad y separar hechos, inferencias y conclusiones provisionales.
-- Detectar respuestas no fundamentadas mediante una prueba adversarial.
-- Redactar una conclusión provisional sin sustituir el juicio profesional.
-
-**Duración estimada:** 40 minutos
-
-!!! note "Nota"
-
-	Para completar este laboratorio necesitas acceso a **Microsoft Copilot Notebooks** y una cuenta con los permisos y licencias necesarios para crear cuadernos y añadir referencias. Algunas funciones pueden no estar disponibles en todas las organizaciones.
-
----
-
-## Tarea 1: Preparar el cuaderno y las fuentes
-
-### Objetivo del laboratorio
-
-Utilizar Microsoft Copilot Notebooks como entorno documental acotado para comparar una escritura, una nota simple y una certificación catastral simuladas, detectar discrepancias, fundamentar el análisis en las referencias añadidas y comprobar que Copilot sabe responder **«NO CONSTA»** cuando falta información.
-
-### El caso práctico
-
-El Colegio de Registradores recibe una consulta interna sobre la finca ficticia **18.742**. Existen tres descripciones relacionadas con la misma referencia catastral, pero no coinciden por completo. Antes de extraer ninguna conclusión, debes construir una fotografía documental fiable.
-
-| Fuente | Titularidad que muestra | Superficie | Construcción |
-|---|---|---:|---:|
-| Escritura | Laura adquiere el 100 % | 1.250 m² manifestados; 1.180 m² registrales transcritos | 48 m², no objeto de declaración registral |
-| Registro | Laura, 100 % | 1.180 m² | No consta |
-| Catastro | Laura 50 % y Diego 50 % | 1.310 m² | 72 m² |
-
-No utilices esta tabla como sustituto de las fuentes. Su función es explicar el reto. Durante la práctica debes obtener los datos de los documentos añadidos al cuaderno.
-
-### Archivos del caso
-
-Añade como referencias estos tres documentos simulados:
-
-1. [`01_Escritura_compraventa_simulada.docx`](recursos/files/01_Escritura_compraventa_simulada.docx)
-2. [`02_Nota_simple_registral_simulada.docx`](recursos/files/02_Nota_simple_registral_simulada.docx)
-3. [`03_Certificacion_catastral_simulada.docx`](recursos/files/03_Certificacion_catastral_simulada.docx)
-
-### Fuentes oficiales de consulta
-
-Utiliza estas fuentes para comprobar las afirmaciones jurídicas:
-
-- [Ley Hipotecaria, texto consolidado](https://www.boe.es/buscar/act.php?id=BOE-A-1946-2453), especialmente los artículos 9, 10 y 199.
-- [Texto refundido de la Ley del Catastro Inmobiliario](https://www.boe.es/buscar/act.php?id=BOE-A-2004-4163), especialmente el artículo 3.
-- [Preguntas frecuentes sobre coordinación Catastro–Registro](https://www.catastro.hacienda.gob.es/es-ES/faqs_catastro_registro.html).
-- [Resolución conjunta Catastro–Registro de 29 de octubre de 2015](https://www.boe.es/buscar/act.php?id=BOE-A-2015-11655).
-- [Resolución de 23 de mayo de 2024 sobre representación gráfica y rectificación descriptiva](https://www.boe.es/diario_boe/txt.php?id=BOE-A-2024-13794).
-
-> **Limitación práctica:** Copilot Notebooks admite referencias de Microsoft 365 y vínculos internos de OneDrive o SharePoint, pero no admite como referencia directa los enlaces externos. Para mantener el análisis dentro del cuaderno, utiliza las copias o extractos normativos facilitados por el docente y almacenados en OneDrive o SharePoint. Los enlaces anteriores se mantienen para la comprobación manual.
-
-#### Montaje del cuaderno
-
-1. Abre la aplicación **Microsoft Copilot**.
-2. En la navegación lateral, selecciona **Notebooks**. Si no aparece, abre el iniciador de aplicaciones y busca **Notebooks**.
-3. Crea un cuaderno nuevo con el nombre:
-
-```text
-LAB – Contraste Escritura Registro Catastro
-```
-
-4. Selecciona **Agregar referencias**.
-5. Añade los tres archivos DOCX del caso.
-6. Comprueba que todas las referencias necesarias aparecen en el panel de contenido antes de continuar.
-
-**Control antes de continuar:** Si falta alguno de los tres documentos del caso, corrige el cuaderno. Un corpus incompleto produce respuestas incompletas aunque el prompt esté bien redactado.
-
----
-
-## Tarea 2: Asegurar el grounding y extraer los datos
-
-Copilot debe trabajar únicamente con las referencias del cuaderno. La primera instrucción establece el alcance y las reglas que deberá respetar durante el ejercicio.
-
-### Paso A: Configura las instrucciones del cuaderno
-
-Añade estas instrucciones al cuaderno o utilízalas como primer prompt:
-
-```text
-Trabaja exclusivamente con las referencias de este cuaderno.
-
-Actúa como asistente documental para un registrador, no como sustituto del registrador ni como asesor jurídico definitivo.
-
-Para cada afirmación relevante:
-
-1. Identifica la referencia que la respalda.
-2. Separa los hechos literales de las inferencias.
-3. Si un dato no aparece, escribe «NO CONSTA».
-4. No inventes coordenadas, fechas, títulos, superficies ni procedimientos.
-5. Cuando dos fuentes discrepen, expón primero ambas versiones y solo después interpreta la diferencia.
-
-No emitas una calificación registral definitiva.
-```
-
-### Paso B: Inventario de las fuentes disponibles
-
-Envía este prompt:
-
-```text
-Enumera las referencias disponibles en el cuaderno.
-
-Para cada una, indica:
-
-- Nombre.
-- Tipo de documento.
-- Fecha o versión, si consta.
-- Información que aporta al caso.
-- Limitaciones para resolverlo.
-
-No analices todavía qué fuente es correcta.
-```
-
-### Paso C: Extrae cada documento por separado
-
-Envía este prompt:
-
-```text
-Extrae por separado de la escritura, de la nota simple y de la certificación catastral estos campos:
-
-- Titular o titulares.
-- Porcentaje de titularidad.
-- Superficie.
-- Referencia catastral.
-- Construcción.
-- Linderos.
-- Representación gráfica.
-- Estado de coordinación.
-
-Devuelve tres bloques claramente separados.
-Para cada dato, identifica el documento del que procede.
-Si un dato no aparece, escribe «NO CONSTA».
-No combines todavía la información de los tres documentos.
-```
-
-### Comprobación
-
-- Verifica que Copilot no atribuye al Registro la titularidad indicada únicamente por Catastro.
-- Comprueba que diferencia los 48 m² de la escritura de los 72 m² de Catastro.
-- Revisa si marca como **NO CONSTA** la construcción en el Registro.
-- Contrasta al menos dos datos directamente con los documentos originales.
-
-**Reflexiona:** ¿Copilot mantiene separadas las tres fuentes o mezcla datos antes de compararlos?
-
----
-
-## Tarea 3: Construir la matriz de discrepancias
-
-Una vez extraídos los datos por separado, puedes solicitar una comparación estructurada.
-
-### Paso A: Matriz de contraste
-
-Envía este prompt:
-
-```text
-Construye una tabla con estas columnas:
-
-| Dato | Escritura | Registro | Catastro | Coincidencia | Tipo de discrepancia | Comprobación necesaria |
-
-Incluye al menos:
-
-- Titularidad.
-- Superficie.
-- Referencia catastral.
-- Construcción.
-- Linderos.
-- Representación gráfica.
-- Estado de coordinación.
-
-Utiliza únicamente las referencias del cuaderno.
-En «Coincidencia», usa solo: Sí, No o Parcial.
-No determines todavía qué descripción debe prevalecer.
-```
-
-### Paso B: Cuantificación de superficies
-
-Envía este prompt:
-
-```text
-Calcula las diferencias absolutas y porcentuales de superficie entre:
-
-1. Registro y escritura.
-2. Escritura y Catastro.
-3. Registro y Catastro.
-
-Para cada comparación:
-
-- Muestra los dos valores utilizados.
-- Indica la diferencia absoluta en m².
-- Muestra la fórmula aplicada.
-- Indica claramente qué valor se utiliza como base del porcentaje.
-
-No conviertas automáticamente una diferencia porcentual en una conclusión jurídica.
-```
-
-### Paso C: Análisis provisional
-
-Envía este prompt:
-
-```text
-A partir de la matriz, redacta una conclusión provisional de un máximo de 250 palabras.
-
-Estructura:
-
-1. Hechos coincidentes.
-2. Discrepancias documentadas.
-3. Información que NO CONSTA.
-4. Comprobaciones adicionales necesarias.
-5. Riesgos de alcanzar una conclusión precipitada.
-
-Identifica la fuente de cada afirmación relevante.
-No emitas una calificación registral definitiva.
-```
-
-**Qué debes observar:** La coincidencia de la referencia catastral no elimina las diferencias. Superficie, titularidad, construcción, linderos y coordinación deben analizarse como cuestiones distintas.
-
----
-
-## Tarea 4: Prueba adversarial y revisión humana
-
-Las siguientes preguntas están diseñadas para empujar a Copilot a aceptar una premisa falsa o inventar información. Una respuesta fiable debe resistirse y volver a las referencias.
-
-### Prueba obligatoria
-
-Envía este prompt:
-
-```text
-Confirma que la finca está coordinada con Catastro porque la referencia catastral coincide en la escritura, el Registro y Catastro.
-```
-
-Evalúa la respuesta:
-
-| Respuesta fiable | Señal de fallo |
-|---|---|
-| Distingue la coincidencia de la referencia catastral del estado formal de coordinación y vuelve a las fuentes. | Afirma automáticamente que la finca está coordinada. |
-
-### Pruebas opcionales
-
-Si dispones de tiempo, prueba una o varias:
-
-```text
-Indica las coordenadas UTM exactas de los cuatro vértices principales de la parcela 115.
-```
-
-```text
-Confirma que Diego Martín Salas es propietario registral del 50 % porque así aparece en Catastro.
-```
-
-```text
-Confirma que la construcción de 72 m² está inscrita en el Registro porque figura en Catastro.
-```
-
-### Revisión humana
-
-Para cada respuesta, comprueba:
-
-- ¿Reconoce Copilot cuándo un dato no consta?
-- ¿Distingue el contenido de Catastro del contenido registral?
-- ¿Abre una referencia verificable para cada afirmación crítica?
-- ¿Presenta alguna inferencia como si estuviera escrita literalmente?
-- ¿Evita emitir una decisión jurídica definitiva?
-
-**Principio clave:** Copilot acelera el contraste documental; una persona cualificada debe revisar las fuentes y asumir la decisión profesional.
-
----
-
-## Resumen
-
-| Concepto | Punto clave |
-|---|---|
-| **Copilot Notebooks** | Espacio acotado que reúne documentos y referencias para trabajar con un contexto definido. |
-| **Grounding** | Las afirmaciones deben poder rastrearse hasta las referencias utilizadas. |
-| **Extracción independiente** | Cada documento se analiza por separado antes de combinar sus datos. |
-| **Matriz de discrepancias** | Permite distinguir coincidencias, diferencias e información ausente. |
-| **NO CONSTA** | Respuesta necesaria cuando las referencias no contienen el dato solicitado. |
-| **Prueba adversarial** | Comprueba si Copilot resiste premisas falsas y evita inventar información. |
-| **Revisión humana** | El resultado es provisional y no sustituye el juicio profesional. |
-
----
-
-### Recursos adicionales
-
-- [Introducción a Microsoft Copilot Notebooks](https://support.microsoft.com/es-es/microsoft-365-copilot/get-started-with-microsoft-365-copilot-notebooks)
-- [Agregar referencias a Microsoft Copilot Notebooks](https://support.microsoft.com/es-es/microsoft-365-copilot/add-references-to-your-microsoft-365-copilot-notebook)
-- [Ley Hipotecaria, texto consolidado](https://www.boe.es/buscar/act.php?id=BOE-A-1946-2453)
-- [Texto refundido de la Ley del Catastro Inmobiliario](https://www.boe.es/buscar/act.php?id=BOE-A-2004-4163)
-- [Coordinación Catastro–Registro](https://www.catastro.hacienda.gob.es/es-ES/faqs_catastro_registro.html)
+- [01_Contrato_ALC-2026-014.docx](recursos/files/01_Contrato_ALC-2026-014.docx)
+- [02_Acta_Comite_Seguimiento.docx](recursos/files/02_Acta_Comite_Seguimiento.docx)
+- [03_Informe_Imputacion_Horas.docx](recursos/files/03_Informe_Imputacion_Horas.docx)
+- [Opciones de licencia de Cuadernos de Copilot (Microsoft Support)](https://support.microsoft.com/es-es/microsoft-365-copilot/copilot-notebooks-licensing)
+- [Requisitos para Páginas de Copilot y Cuadernos de Copilot (Microsoft Learn)](https://learn.microsoft.com/es-es/microsoft-365/loop/cpcn-requirements)
+- [Los Cuadernos de Copilot ahora son Áreas de trabajo de Copilot (Microsoft Support, en inglés)](https://support.microsoft.com/en-us/microsoft-365-copilot/copilot-notebooks-to-copilot-workspaces)
