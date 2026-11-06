@@ -46,9 +46,9 @@ nav:
   - IA y M365 Copilot para profesionales:
       - Presentación del curso: ia-copilot-profesionales/index.md
       - Recursos del curso: ia-copilot-profesionales/recursos/index.md
-      - Primeros pasos con Microsoft 365 Copilot: ia-copilot-profesionales/lab1.md
-      - Técnicas de prompting aplicadas a datos empresariales: ia-copilot-profesionales/lab2.md
-      - Análisis documental avanzado con Copilot Notebooks: ia-copilot-profesionales/lab3.md
+      - "Primeros pasos con Microsoft 365 Copilot Chat": ia-copilot-profesionales/lab1.md
+      - Técnicas de prompting aplicadas a datos de proyecto: ia-copilot-profesionales/lab2.md
+      - Análisis documental con Cuadernos de Copilot: ia-copilot-profesionales/lab3.md
       - Crear y probar un agente con Microsoft 365 Copilot: ia-copilot-profesionales/lab4.md
 
   - Optimización SQL y Unity en Databricks:

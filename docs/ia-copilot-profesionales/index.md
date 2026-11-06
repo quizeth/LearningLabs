@@ -28,7 +28,7 @@
 <strong>Abrir laboratorio</strong>
 </a>
 <a href="lab4/" style="display: block; padding: 1.25rem; border: 1px solid var(--md-default-fg-color--lightest); border-radius: 6px; background: var(--md-code-bg-color); color: var(--md-default-fg-color); text-decoration: none;">
-<strong>Lab 4 · Crear y probar un agente con M365 Copilot</strong>
+<strong>Lab 4 · Crear y probar un agente con Microsoft 365 Copilot</strong>
 <p>Crea y prueba un agente reutilizable con Agent Builder para revisar oportunidades Go/No-Go, calcular márgenes, aplicar políticas internas y mantener la decisión bajo supervisión humana.</p>
 <strong>Abrir laboratorio</strong>
 </a>
