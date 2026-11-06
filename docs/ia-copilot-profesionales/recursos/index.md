@@ -24,12 +24,12 @@ Este laboratorio no tiene archivos de apoyo.
 
 | Archivo | Uso |
 |---|---|
-| [`01_Playbook_Juridico_SaaS.docx`](files/01_Playbook_Juridico_SaaS.docx) | Conocimiento permanente del agente. |
-| [`02_Politica_Financiera_Aprobaciones_SaaS.docx`](files/02_Politica_Financiera_Aprobaciones_SaaS.docx) | Conocimiento permanente del agente. |
-| [`03_Contrato_OrionCloud.docx`](files/03_Contrato_OrionCloud.docx) | Primer caso de prueba. |
-| [`04_Solicitud_Compra_OrionCloud.docx`](files/04_Solicitud_Compra_OrionCloud.docx) | Datos económicos y de negocio del primer caso. |
-| [`05_Contrato_NovaDesk.docx`](files/05_Contrato_NovaDesk.docx) | Segundo caso de prueba. |
-| [`06_Solicitud_Compra_NovaDesk.docx`](files/06_Solicitud_Compra_NovaDesk.docx) | Datos económicos y de negocio del segundo caso. |
+| [`01_Politica_Ofertas_GoNoGo.docx`](files/01_Politica_Ofertas_GoNoGo.docx) | Reglas de evaluación Go/No-Go que se incorporan al conocimiento permanente del agente. |
+| [`02_Politica_Aprobacion_Margen.docx`](files/02_Politica_Aprobacion_Margen.docx) | Reglas de cálculo del margen y niveles de aprobación. |
+| [`03_Pliego_Cliente_A.docx`](files/03_Pliego_Cliente_A.docx) | Requisitos del cliente para la oportunidad A, Transportes Brezo. |
+| [`04_Estimacion_Interna_A.docx`](files/04_Estimacion_Interna_A.docx) | Estimación de costes y recursos de Corvalia para la oportunidad A. |
+| [`05_Pliego_Cliente_B.docx`](files/05_Pliego_Cliente_B.docx) | Requisitos del cliente para la oportunidad B, Editorial Marea. |
+| [`06_Estimacion_Interna_B.docx`](files/06_Estimacion_Interna_B.docx) | Estimación de costes y recursos de Corvalia para la oportunidad B. |
 
 ## Archivos del curso
 

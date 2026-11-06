@@ -1,5 +1,7 @@
 # IA y M365 Copilot para profesionales
 
+<p style="margin-top: -0.5rem; color: var(--md-default-fg-color--light);"><small>Actualizado: noviembre de 2026</small></p>
+
 ## 💡 Antes de empezar
 
 - Lee el laboratorio completo antes de comenzar.
@@ -22,12 +24,12 @@
 </a>
 <a href="lab3/" style="display: block; padding: 1.25rem; border: 1px solid var(--md-default-fg-color--lightest); border-radius: 6px; background: var(--md-code-bg-color); color: var(--md-default-fg-color); text-decoration: none;">
 <strong>Lab 3 · Análisis documental con Cuadernos de Copilot</strong>
-<p>Contrasta el contrato, el acta y el informe de imputación del proyecto ALC-2026-014: extrae datos por separado, identifica discrepancias, prueba el grounding y valida las conclusiones con revisión humana.</p>
+<p>Contrasta el contrato, el acta y el informe de imputación de un proyecto: extrae datos por separado, identifica discrepancias, prueba el grounding y valida las conclusiones con revisión humana.</p>
 <strong>Abrir laboratorio</strong>
 </a>
 <a href="lab4/" style="display: block; padding: 1.25rem; border: 1px solid var(--md-default-fg-color--lightest); border-radius: 6px; background: var(--md-code-bg-color); color: var(--md-default-fg-color); text-decoration: none;">
 <strong>Lab 4 · Crear y probar un agente con M365 Copilot</strong>
-<p>Crea, configura y prueba un agente de Microsoft 365 Copilot capaz de realizar revisiones legales y financieras reutilizables sobre contratos SaaS, manteniendo siempre la supervisión humana.</p>
+<p>Crea y prueba un agente reutilizable con Agent Builder para revisar oportunidades Go/No-Go, calcular márgenes, aplicar políticas internas y mantener la decisión bajo supervisión humana.</p>
 <strong>Abrir laboratorio</strong>
 </a>
 </div>
@@ -48,9 +50,9 @@
 <strong>Ver documentos</strong>
 </a>
 <a href="recursos/#lab-4" style="display: block; padding: 1.25rem; border: 1px solid var(--md-default-fg-color--lightest); border-radius: 6px; background: var(--md-code-bg-color); color: var(--md-default-fg-color); text-decoration: none;">
-<strong>Lab 4 · Expedientes contractuales OrionCloud y NovaDesk</strong>
-<p>Playbook, política financiera, contratos y solicitudes de compra para el Lab 4.</p>
-<strong>Ver casos</strong>
+<strong>Lab 4 · Políticas y oportunidades Go/No-Go</strong>
+<p>Políticas internas, pliegos y estimaciones de dos oportunidades para configurar y probar el agente.</p>
+<strong>Ver documentos</strong>
 </a>
 </div>
 
@@ -61,6 +63,11 @@
 <strong>Diapositivas · IA Generativa y Microsoft Copilot</strong>
 <p>Presentación de apoyo para el curso sobre IA generativa y Microsoft 365 Copilot.</p>
 <strong>Ver diapositivas</strong>
+</a>
+<a href="recursos/files/Ejemplo%20-%20Instrucciones%20personalizadas/" style="display: block; padding: 1.25rem; border: 1px solid var(--md-default-fg-color--lightest); border-radius: 6px; background: var(--md-code-bg-color); color: var(--md-default-fg-color); text-decoration: none;">
+<strong>Prompt de ejemplo · Instrucciones personalizadas</strong>
+<p>Consulta un ejemplo de instrucciones personalizadas para usar Copilot en modo auditor crítico.</p>
+<strong>Abrir ejemplo</strong>
 </a>
 </div>
 
