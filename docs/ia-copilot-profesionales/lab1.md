@@ -1,4 +1,4 @@
-# Laboratorio 1: Primeros pasos con Microsoft 365 Copilot Chat
+# Laboratorio 1: Primeros pasos con Microsoft 365 Copilot
 
 ## Introducción
 
