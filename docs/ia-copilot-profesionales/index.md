@@ -13,7 +13,7 @@
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: 1rem;">
 <a href="lab1/" style="display: block; padding: 1.25rem; border: 1px solid var(--md-default-fg-color--lightest); border-radius: 6px; background: var(--md-code-bg-color); color: var(--md-default-fg-color); text-decoration: none;">
-<strong>Lab 1 · Primeros pasos con Microsoft 365 Copilot Chat</strong>
+<strong>Lab 1 · Primeros pasos con Microsoft 365 Copilot</strong>
 <p>Aprende a usar Microsoft 365 Copilot Chat para investigar, generar ideas, crear contenido, resumir documentos y colaborar en la planificación de una cumbre de clientes.</p>
 <strong>Abrir laboratorio</strong>
 </a>

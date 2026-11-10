@@ -1,4 +1,4 @@
-# Laboratorio 1: Primeros pasos con Microsoft 365 Copilot
+# Laboratorio 1: Primeros pasos con Microsoft 365 Copilot Chat
 
 ## Introducción
 
@@ -19,10 +19,11 @@ Al finalizar el laboratorio, podrás:
 - Crear una tabla y una imagen a partir de una descripción.
 - Convertir una respuesta de Copilot en un documento de Word.
 - Analizar un archivo subido y generar una comunicación a partir de él.
+- *(Opcional)* Convertir una respuesta en una página de Copilot Pages, editarla con Copilot y compartirla.
 
 ## Información del laboratorio
 
-**Duración estimada:** 20 minutos. La Tarea 6 es opcional.
+**Duración estimada:** 20 minutos. Las tareas 6 y 7 son opcionales.
 
 **Material necesario:**
 
@@ -30,7 +31,7 @@ Al finalizar el laboratorio, podrás:
 - No necesitas archivos de apoyo: el documento de Word lo crearás durante el laboratorio.
 
 !!! note "Licencias"
-    La búsqueda web, la generación de imágenes y la carga de archivos están disponibles en Copilot Chat con y sin licencia premium. Si tienes licencia premium y Copilot incorpora datos de tu organización, algunas respuestas pueden ser distintas. Para la investigación de la Tarea 1, prioriza las fuentes web.
+    La búsqueda web, la generación de imágenes y la carga de archivos están disponibles en Copilot Chat con y sin licencia premium. Copilot Pages tampoco requiere licencia premium: basta con tener almacenamiento en OneDrive o SharePoint. Si tienes licencia premium y Copilot incorpora datos de tu organización, algunas respuestas pueden ser distintas. Para la investigación de la Tarea 1, prioriza las fuentes web.
 
 !!! warning "No envíes nada"
     En este laboratorio redactarás un correo, pero no lo enviarás. Todos los contenidos se refieren a empresas ficticias.
@@ -39,7 +40,7 @@ Al finalizar el laboratorio, podrás:
 
 Corvalia quiere reforzar su relación con Grupo Alcora y te ha pedido que organices una **Jornada de Innovación en Logística**: un evento de un día en el que Corvalia presentará al cliente las tendencias tecnológicas de su sector.
 
-Tienes que preparar una propuesta inicial: los temas, las sesiones, la agenda, un logotipo, un resumen de planificación y un correo para el equipo de la cuenta. Usarás Copilot Chat en todos los pasos. Las tareas 1 a 4 se hacen en la misma conversación; la Tarea 5, en una conversación nueva.
+Tienes que preparar una propuesta inicial: los temas, las sesiones, la agenda, un logotipo, un resumen de planificación y un correo para el equipo de la cuenta. Usarás Copilot Chat en todos los pasos. Las tareas 1 a 4 se hacen en la misma conversación; la Tarea 5, en una conversación nueva. Las tareas opcionales 6 y 7 vuelven a la primera conversación.
 
 ---
 
@@ -230,7 +231,47 @@ Subir el documento de la Tarea 4, resumirlo y generar a partir de él una comuni
 
 ---
 
-### Tarea 6 *(opcional)*: Revisión y reflexión
+### Tarea 6 *(opcional)*: Colaborar en Copilot Pages
+
+#### Objetivo
+
+Convertir la agenda en una página de Copilot Pages, editarla con ayuda de Copilot y compartirla con un compañero o compañera para trabajar sobre el mismo contenido.
+
+#### Pasos
+
+1. Vuelve a la conversación de las tareas 1 a 4: búscala en el historial de conversaciones del panel lateral.
+2. Localiza la respuesta con la tabla de la agenda (Tarea 3).
+3. Debajo de la respuesta, selecciona **Editar en Pages** (puede estar dentro del menú **…**) y elige crear una página nueva.
+4. Selecciona el título de la página y cámbialo por `Agenda Jornada Innovación en Logística`.
+5. En el chat que aparece junto a la página, envía este prompt:
+
+    ```text
+    Añade a la tabla de la agenda una columna «Responsable» con el valor «Por asignar» en todas las filas. No cambies los horarios.
+    ```
+
+6. Edita a mano una celda de la columna nueva y escribe tu nombre como responsable de la bienvenida.
+7. Selecciona **Compartir**, elige compartir la página y envía el enlace por el chat del curso a la persona que te indique el formador o la formadora.
+8. Si alguien comparte su página contigo, ábrela y añade tu nombre como responsable de una sesión.
+
+!!! warning "Comparte solo dentro de tu organización"
+    Las personas invitadas externas no pueden abrir una página compartida mediante enlace. Comparte únicamente con compañeros y compañeras del curso.
+
+#### Comprobación
+
+- La página contiene la agenda y tiene el título indicado.
+- La columna «Responsable» aparece en todas las filas y los horarios no han cambiado.
+- Tu edición manual se conserva junto a los cambios de Copilot.
+- Has compartido el enlace y, si has recibido uno, has editado la página de otra persona.
+
+#### Reflexiona
+
+- ¿Qué diferencia hay entre compartir una página y compartir el documento de Word de la Tarea 4?
+- La persona con la que compartes la página, ¿ve también tu conversación con Copilot?
+- ¿Para qué tipo de contenido de tu trabajo usarías Pages en lugar de Word?
+
+---
+
+### Tarea 7 *(opcional)*: Revisión y reflexión
 
 #### Objetivo
 
@@ -238,7 +279,7 @@ Consolidar lo aprendido y relacionarlo con tu trabajo diario.
 
 #### Pasos
 
-1. Vuelve a la conversación de las tareas 1 a 4: búscala en el historial de conversaciones del panel lateral.
+1. Vuelve a la conversación de las tareas 1 a 4 si no estás en ella.
 2. Envía este prompt, sustituyendo `[rol]` por tu puesto:
 
     ```text
@@ -267,6 +308,7 @@ Comprueba que:
 - Has generado un logotipo.
 - Has creado y guardado un documento de Word.
 - Has subido el documento, lo has resumido y has redactado un correo sin enviarlo.
+- *(Opcional)* Has convertido la agenda en una página de Copilot Pages, la has editado y la has compartido.
 
 ## Resumen
 
@@ -277,6 +319,7 @@ Comprueba que:
 | **Contenido visual** | Copilot crea tablas e imágenes a partir de una descripción; los detalles (como los horarios) se revisan. |
 | **Creación de documentos** | Una respuesta de Copilot puede convertirse en un documento de Word para compartirlo y conservarlo. |
 | **Análisis de archivos** | Copilot resume archivos subidos y genera comunicaciones a partir de ellos. |
+| **Copilot Pages** | Convierte una respuesta en una página persistente que puedes editar con Copilot y compartir con tu equipo. |
 | **Revisión humana** | Copilot propone; tú compruebas y decides qué se envía. |
 
 ## Recursos adicionales
@@ -284,3 +327,4 @@ Comprueba que:
 - [Microsoft 365 Copilot Chat](https://m365.cloud.microsoft/chat)
 - [Información general de Microsoft Copilot Chat (Microsoft Learn, en inglés)](https://learn.microsoft.com/en-us/copilot/overview)
 - [Carga de archivos en Microsoft Copilot (Microsoft Support, en inglés)](https://support.microsoft.com/en-us/microsoft-365-copilot/file-upload-in-microsoft-copilot)
+- [Introducción a Microsoft Copilot Pages (Microsoft Support, en inglés)](https://support.microsoft.com/en-us/microsoft-365-copilot/get-started-with-microsoft-365-copilot-pages)
