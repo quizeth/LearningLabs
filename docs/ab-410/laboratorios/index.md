@@ -15,12 +15,11 @@ Realiza los laboratorios prácticos del curso en Skillable:
 
 Si Skillable responde con lentitud, puedes seguir las instrucciones allí y abrir Power Platform en el navegador de tu equipo. Usa esta opción solo con la cuenta de laboratorio asignada a ti por el instructor o el proveedor:
 
-1. Deja Skillable abierto para consultar los pasos del laboratorio.
-2. Abre una ventana privada o de incógnito en tu navegador para evitar conflictos con otras cuentas Microsoft.
-3. Entra en [Power Apps](https://make.powerapps.com) e inicia sesión con la cuenta Microsoft 365 del laboratorio. No uses una cuenta personal.
-4. Si aparece una solicitud de autenticación adicional, complétala según las indicaciones del instructor.
-5. En el selector de entornos, situado en la parte superior derecha, elige **Dev One**. Comprueba que estás en ese entorno antes de crear o modificar recursos.
-6. Para las prácticas de Power Automate o Power Pages, abre respectivamente [Power Automate](https://make.powerautomate.com) o [Power Pages](https://make.powerpages.microsoft.com) en otra pestaña e inicia sesión con la misma cuenta. Verifica también el entorno cuando la aplicación lo permita.
+1. Abre una ventana privada o de incógnito en tu navegador para evitar conflictos con otras cuentas Microsoft.
+2. Entra en [Power Apps](https://make.powerapps.com) e inicia sesión con la cuenta Microsoft 365 del laboratorio. No uses una cuenta personal.
+3. Si aparece una solicitud de autenticación adicional, complétala según las indicaciones del instructor.
+4. En el selector de entornos, situado en la parte superior derecha, elige **Dev One**. Comprueba que estás en ese entorno antes de crear o modificar recursos.
+5. Para las prácticas de Power Automate o Power Pages, abre respectivamente [Power Automate](https://make.powerautomate.com) o [Power Pages](https://make.powerpages.microsoft.com) en otra pestaña e inicia sesión con la misma cuenta. Verifica también el entorno cuando la aplicación lo permita.
 
 La ventana privada separa la sesión de tus cuentas habituales; no cambia el entorno ni las limitaciones de la licencia de laboratorio. No compartas la cuenta ni guardes su contraseña en un dispositivo compartido. Si no puedes iniciar sesión o no ves **Dev One**, consulta al instructor antes de continuar.
 

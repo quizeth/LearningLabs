@@ -45,6 +45,15 @@ You will be provided with a **Microsoft 365 license** by your Authorized Lab Hos
 > [!NOTE]
 > Do not use a personal Microsoft account for these labs. The Microsoft 365 account provided by your ALH includes the organizational permissions required to create Dataverse environments and access Power Platform features.
 
+### Quick readiness checklist
+
+Before starting the labs, confirm that you have:
+
+- The organizational account provided by your ALH; do not use a personal account.
+- Access to the **Dev One** environment with Dataverse, and permission to create or edit the solution components used in the labs. Ask your instructor or lab host if access is missing or denied.
+- A Power Apps Premium trial or assigned license that includes the premium Power Automate connector used in Labs 8 and 9.
+- Power Pages access before Lab 7, AI Builder credits before Lab 10, and Copilot Studio access for Lab 11. These products may require separate trial activation; ask your instructor or lab host if activation is unavailable.
+
 ## Task 1: Sign in to Power Apps and start your trial
 
 1. Open a browser and go to [**Power Apps**](https://make.powerapps.com) at `https://make.powerapps.com`.
