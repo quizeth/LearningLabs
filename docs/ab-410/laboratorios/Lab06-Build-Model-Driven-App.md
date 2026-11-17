@@ -5,8 +5,6 @@ lab:
     duration: '45 minutes'
     level: 300
     islab: true
-search:
-  exclude: true
 ---
 
 # Build a model-driven app for Contoso service managers

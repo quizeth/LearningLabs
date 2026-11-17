@@ -1,8 +1,6 @@
 ---
 title: "AB-410: Build intelligent applications with Power Platform"
 description: "Materiales y laboratorios del curso AB-410 sobre aplicaciones inteligentes con Power Platform."
-search:
-  exclude: true
 ---
 
 # AB-410: Build intelligent applications with Power Platform

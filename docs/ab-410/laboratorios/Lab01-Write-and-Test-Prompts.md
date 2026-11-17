@@ -5,8 +5,6 @@ lab:
     duration: '15 minutes'
     level: 200
     islab: true
-search:
-  exclude: true
 ---
 
 # Write and test prompts for Contoso Field Services

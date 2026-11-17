@@ -1,8 +1,6 @@
 ---
 title: Soluciones
 description: Archivos ZIP con soluciones de Power Platform exportadas para el curso AB-410.
-search:
-  exclude: true
 ---
 
 # Soluciones

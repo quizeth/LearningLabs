@@ -5,8 +5,6 @@ lab:
     duration: '60 minutes'
     level: 300
     islab: true
-search:
-  exclude: true
 ---
 
 # Create a Contoso customer portal with Power Pages

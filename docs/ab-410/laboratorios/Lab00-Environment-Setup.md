@@ -5,8 +5,6 @@ lab:
     duration: '20 minutes'
     level: 100
     islab: true
-search:
-  exclude: true
 ---
 
 # Set up your lab environment
@@ -66,7 +64,9 @@ You will be provided with a **Microsoft 365 license** by your Authorized Lab Hos
 1. Confirm that the environment picker in the top-right corner now shows **Dev One**. This is the environment you will use throughout all labs in this course.
 
 > [!NOTE]
-> Dev One includes Microsoft Dataverse, which is required for all labs in this course. If you don't see Dev One in the environment list, let your instructor know.
+> **If Dev One isn't available:** Ask your instructor whether you should create a new environment. If you have permission, create one in the Power Platform admin center with the name **Dev One**, environment type **Developer**, a **Dataverse** database, and the option to add **sample apps and data** enabled. Naming it Dev One keeps the environment name consistent with the steps in the later labs. If you can't create it or don't see these options, ask your instructor or lab host for help.
+
+> **Publisher for the course solution:** In Lab 3, when you create the Contoso Field Services solution, select the **Contoso** publisher with the `contoso` prefix. If it isn't available, create a publisher named **Contoso** with the unique name/prefix `contoso` before creating the solution.
 
 ## Task 2: Verify your Power Automate access
 

@@ -5,8 +5,6 @@ lab:
     duration: '30 minutes'
     level: 200
     islab: true
-search:
-  exclude: true
 ---
 
 # Use AI-powered Plans to design the Contoso Field Services solution

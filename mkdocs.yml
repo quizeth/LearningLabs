@@ -60,6 +60,27 @@ nav:
       - "Guía del alumno · Sesión 2": terraform-despliegues-practicos/guia-alumno.md
       - Script Terraform de la práctica: terraform-despliegues-practicos/terraform-script.md
 
+  - Cursos oficiales de certificación:
+      - AB-410 · Build intelligent applications with Power Platform:
+          - Presentación del curso: ab-410/index.md
+          - Materiales teóricos: ab-410/materiales-teoricos.md
+          - Laboratorios: ab-410/laboratorios/index.md
+          - Soluciones: ab-410/laboratorios/soluciones/index.md
+          - Credenciales de Microsoft Applied Skills: ab-410/credenciales.md
+          - Guías de laboratorio:
+              - Lab 00 · Set up your lab environment: ab-410/laboratorios/Lab00-Environment-Setup.md
+              - Lab 01 · Write and test prompts: ab-410/laboratorios/Lab01-Write-and-Test-Prompts.md
+              - Lab 02 · Use AI-powered Plans: ab-410/laboratorios/Lab02-Use-Plans-to-Design-a-Solution.md
+              - Lab 03 · Build the Dataverse data model: ab-410/laboratorios/Lab03-Build-Data-Model.md
+              - Lab 04 · Configure security roles: ab-410/laboratorios/Lab04-Configure-Security-Roles.md
+              - Lab 05 · Build a canvas app: ab-410/laboratorios/Lab05-Build-Canvas-App.md
+              - Lab 06 · Build a model-driven app: ab-410/laboratorios/Lab06-Build-Model-Driven-App.md
+              - Lab 07 · Create a Power Pages portal: ab-410/laboratorios/Lab07-Create-Power-Pages-Portal.md
+              - Lab 08 · Automate a cloud flow: ab-410/laboratorios/Lab08-Automate-Cloud-Flow.md
+              - Lab 09 · Build an approval flow: ab-410/laboratorios/Lab09-Build-Approval-Flow.md
+              - Lab 10 · Use AI Builder grounded prompts: ab-410/laboratorios/Lab10-AI-Builder-Grounded-Prompts.md
+              - Lab 11 · Build a Copilot Studio agent: ab-410/laboratorios/Lab11-Embed-Copilot-Studio-Agent.md
+
 markdown_extensions:
   - admonition
   - pymdownx.details

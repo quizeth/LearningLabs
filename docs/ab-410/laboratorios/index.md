@@ -1,8 +1,6 @@
 ---
 title: Laboratorios
 description: Laboratorios Skillable, guías descargables y soluciones del curso AB-410.
-search:
-  exclude: true
 ---
 
 # Laboratorios

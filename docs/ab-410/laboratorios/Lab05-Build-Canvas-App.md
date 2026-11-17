@@ -5,8 +5,6 @@ lab:
     duration: '60 minutes'
     level: 300
     islab: true
-search:
-  exclude: true
 ---
 
 # Build a canvas app for Contoso field technicians

@@ -5,8 +5,6 @@ lab:
     duration: '20 minutes'
     level: 200
     islab: true
-search:
-  exclude: true
 ---
 
 # Configure Contoso security roles in Dataverse

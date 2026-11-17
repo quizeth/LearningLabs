@@ -5,8 +5,6 @@ lab:
     duration: '45 minutes'
     level: 400
     islab: true
-search:
-  exclude: true
 ---
 
 # Build and evaluate a Copilot Studio agent for Contoso service managers

@@ -5,8 +5,6 @@ lab:
     duration: '45 minutes'
     level: 400
     islab: true
-search:
-  exclude: true
 ---
 
 # Query Contoso service history with AI Builder grounded prompts

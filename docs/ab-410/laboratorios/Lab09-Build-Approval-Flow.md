@@ -5,8 +5,6 @@ lab:
     duration: '30 minutes'
     level: 300
     islab: true
-search:
-  exclude: true
 ---
 
 # Build a Critical request approval flow for Contoso

@@ -1,8 +1,6 @@
 ---
 title: Credenciales de Microsoft Applied Skills
 description: Credenciales Microsoft Applied Skills relacionadas con las tecnologías del curso AB-410.
-search:
-  exclude: true
 ---
 
 # Credenciales de Microsoft Applied Skills

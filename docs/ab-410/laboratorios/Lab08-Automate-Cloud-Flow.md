@@ -5,8 +5,6 @@ lab:
     duration: '30 minutes'
     level: 300
     islab: true
-search:
-  exclude: true
 ---
 # Automate technician notification with a cloud flow
 

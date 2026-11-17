@@ -1,8 +1,6 @@
 ---
 title: Materiales teóricos
 description: Ruta de aprendizaje y blogs oficiales para el curso AB-410.
-search:
-  exclude: true
 ---
 
 # Materiales teóricos

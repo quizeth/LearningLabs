@@ -5,8 +5,6 @@ lab:
     duration: '30 minutes'
     level: 200
     islab: true
-search:
-  exclude: true
 ---
 
 # Build the Contoso Field Services data model in Dataverse
