@@ -65,8 +65,6 @@ nav:
           - Presentación del curso: ab-410/index.md
           - Materiales teóricos: ab-410/materiales-teoricos.md
           - Laboratorios: ab-410/laboratorios/index.md
-          - Soluciones: ab-410/laboratorios/soluciones/index.md
-          - Credenciales de Microsoft Applied Skills: ab-410/credenciales.md
           - Guías de laboratorio:
               - Lab 00 · Set up your lab environment: ab-410/laboratorios/Lab00-Environment-Setup.md
               - Lab 01 · Write and test prompts: ab-410/laboratorios/Lab01-Write-and-Test-Prompts.md
@@ -80,6 +78,8 @@ nav:
               - Lab 09 · Build an approval flow: ab-410/laboratorios/Lab09-Build-Approval-Flow.md
               - Lab 10 · Use AI Builder grounded prompts: ab-410/laboratorios/Lab10-AI-Builder-Grounded-Prompts.md
               - Lab 11 · Build a Copilot Studio agent: ab-410/laboratorios/Lab11-Embed-Copilot-Studio-Agent.md
+          - Soluciones: ab-410/laboratorios/soluciones/index.md
+          - Credenciales de Microsoft Applied Skills: ab-410/credenciales.md
 
 markdown_extensions:
   - admonition
