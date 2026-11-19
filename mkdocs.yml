@@ -1,71 +1,92 @@
 site_name: LearningLabs
 site_description: Laboratorios y recursos de aprendizaje en datos, IA y tecnologías Microsoft
 site_author: Carmela Quijano
+site_url: https://quizeth.github.io/LearningLabs/
 
 theme:
   name: material
+  logo: assets/isotipo LearningLabs.png
   language: es
 
   font:
     text: Inter
     code: JetBrains Mono
 
+  icon:
+    repo: fontawesome/brands/github
+
   palette:
 
     - scheme: default
-      primary: indigo
-      accent: teal
+      primary: custom
+      accent: custom
 
       toggle:
         icon: material/weather-night
         name: Activar modo oscuro
 
     - scheme: slate
-      primary: indigo
-      accent: teal
+      primary: custom
+      accent: custom
 
       toggle:
         icon: material/weather-sunny
         name: Activar modo claro
 
   features:
-    - navigation.tabs
     - navigation.sections
-    - navigation.top
     - navigation.expand
-    - navigation.footer
+    - navigation.top
+
+    - toc.follow
+
     - content.code.copy
     - content.tabs.link
+
     - search.highlight
     - search.suggest
     - search.share
 
+    - content.tooltips
+
+extra_css:
+  - stylesheets/extra.css
+
+plugins:
+  - search
+
 nav:
   - Inicio: index.md
 
-  - IA y M365 Copilot para profesionales:
+  - "M365 Copilot para profesionales":
       - Presentación del curso: ia-copilot-profesionales/index.md
       - Recursos del curso: ia-copilot-profesionales/recursos/index.md
-      - "Primeros pasos con Microsoft 365 Copilot Chat": ia-copilot-profesionales/lab1.md
+      - Primeros pasos con Microsoft 365 Copilot Chat: ia-copilot-profesionales/lab1.md
       - Técnicas de prompting aplicadas a datos de proyecto: ia-copilot-profesionales/lab2.md
       - Análisis documental con Cuadernos de Copilot: ia-copilot-profesionales/lab3.md
       - Crear y probar un agente con Microsoft 365 Copilot: ia-copilot-profesionales/lab4.md
 
-  - Optimización SQL y Unity en Databricks:
+  - "Optimización SQL y Unity en Databricks":
       - Presentación del curso: optimizacion-databricks/index.md
       - Optimización SQL y gobierno con Unity Catalog: optimizacion-databricks/lab1.md
 
   - "Terraform: Despliegues prácticos e infraestructuras complejas":
       - Presentación del curso: terraform-despliegues-practicos/index.md
-      - "Guía del alumno · Sesión 2": terraform-despliegues-practicos/guia-alumno.md
+      - Guía del alumno · Sesión 2: terraform-despliegues-practicos/guia-alumno.md
       - Script Terraform de la práctica: terraform-despliegues-practicos/terraform-script.md
 
   - Cursos oficiales de certificación:
-      - AB-410 · Build intelligent applications with Power Platform:
+
+      - "AB-410 · Build intelligent applications with Power Platform":
+
           - Presentación del curso: ab-410/index.md
+
           - Materiales teóricos: ab-410/materiales-teoricos.md
+
           - Laboratorios: ab-410/laboratorios/index.md
+
           - Guías de laboratorio:
+
               - Lab 00 · Set up your lab environment: ab-410/laboratorios/Lab00-Environment-Setup.md
               - Lab 01 · Write and test prompts: ab-410/laboratorios/Lab01-Write-and-Test-Prompts.md
               - Lab 02 · Use AI-powered Plans: ab-410/laboratorios/Lab02-Use-Plans-to-Design-a-Solution.md
@@ -78,16 +99,35 @@ nav:
               - Lab 09 · Build an approval flow: ab-410/laboratorios/Lab09-Build-Approval-Flow.md
               - Lab 10 · Use AI Builder grounded prompts: ab-410/laboratorios/Lab10-AI-Builder-Grounded-Prompts.md
               - Lab 11 · Build a Copilot Studio agent: ab-410/laboratorios/Lab11-Embed-Copilot-Studio-Agent.md
+
           - Soluciones: ab-410/laboratorios/soluciones/index.md
+
           - Credenciales de Microsoft Applied Skills: ab-410/credenciales.md
 
 markdown_extensions:
+
   - admonition
+
   - pymdownx.details
+
   - pymdownx.superfences
-  - pymdownx.highlight
+
+  - pymdownx.highlight:
+      anchor_linenums: true
+
   - pymdownx.inlinehilite
+
   - pymdownx.tabbed:
       alternate_style: true
+
+  - attr_list
+
+  - md_in_html
+
   - toc:
       permalink: true
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Quizeth/LearningLabs

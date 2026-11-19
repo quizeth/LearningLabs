@@ -12,7 +12,7 @@ Bienvenido a los materiales del curso **AB-410**. Aprenderás a diseñar y crear
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: 1rem;">
 <a href="./materiales-teoricos/" style="display: block; padding: 1.25rem; border: 1px solid var(--md-default-fg-color--lightest); border-radius: 6px; background: var(--md-code-bg-color); color: var(--md-default-fg-color); text-decoration: none;">
 <strong>Ruta de aprendizaje y blogs</strong>
-<p>Accede a Microsoft Learn y a los blogs oficiales de Power Platform, Power Apps y Power Automate.</p>
+<p>Accede a Microsoft Learn, a los blogs oficiales de Power Platform, Power Apps y Power Automate, y a los materiales de referencia de Power Fx.</p>
 <strong>Ver materiales teóricos</strong>
 </a>
 </div>
